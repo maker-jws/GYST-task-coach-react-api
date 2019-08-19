@@ -1,7 +1,7 @@
 # GYST-task-coach-react-api
 # GYST - React/Flask App 
 
-User Stories: 
+# User Stories: 
 
 User is greeted by splash page with login window / register link
 User enters username (email) & password with input fields
@@ -16,9 +16,9 @@ After clicking on a task a modal will populate offering the user options to chan
 After logging out the uncompleted tasks (that are not saved) are deleted from DB
 Session logout time is updated for user 
 
-MODELS
+# MODELS
 
-USER
+## USER
 + Name (varChar)
 + Email (Username) (varChar)
 + PW (varChar) 
@@ -26,7 +26,7 @@ USER
 + LogOut Time (Date)
 + UserID   (Integer)
 
-TASK
+## TASK
 + Name (varChar)
 + Priority  (varChar)
 + Saved (Boolean)
