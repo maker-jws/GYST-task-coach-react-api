@@ -19,28 +19,30 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: '',
-      email: '',
-      loginTime: null,
-      logoutTime: null,
-      loading: true,
-      tasks: [],
-      currentTime: new Date().toLocaleString()
+      currentUser: {
+        user_id: 0,
+        username: "",
+        email: "",
+        login: "",
+        logout: "",
+        loading: true,
+        tasks: [],
+        currentTime: new Date().toLocaleString()
+      }
+    }
+
+    render() {
+      return (
+        <div className="App">
+          <Header />
+          <TaskContainer />
+
+        </div>
+      );
     }
   }
 
-  render() {
-    return (
-      <div className="App">
-        <Header />
-        <TaskContainer />
 
-      </div>
-    );
-  }
-}
-
-
-export default App;
+  export default App;
 
 // not using switch until all functionality is in place -- then drop into routes. 
