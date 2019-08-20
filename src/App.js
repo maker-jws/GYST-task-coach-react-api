@@ -1,19 +1,17 @@
 import React, { Component } from 'react';
-import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { Route, Switch } from 'react-router-dom';
-import Login from './Login';
+// import { Route, Switch } from 'react-router-dom';
 import TaskContainer from './Components/TaskContainer/index'
-import Header from './Components/Header';
+import Header from './Components/Header/index';
 
-const My404 = () => {
-  return (
-    <div>
-      You are lost
-    </div>
-  )
-}
+// const My404 = () => {
+//   return (
+//     <div>
+//       You are lost
+//     </div>
+//   )
+// }
 //Login Function passing props to Login Component inside header 
 //Register Function passing props to Register Component inside header 
 //Logout Function writing to database - 
@@ -34,13 +32,15 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <h1> App is Loaded </h1>
         <Header />
         <TaskContainer />
+
       </div>
     );
   }
 }
-}
+
 
 export default App;
 
