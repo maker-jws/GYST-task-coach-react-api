@@ -1,26 +1,41 @@
-import React from 'react';
+import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+// import { Route, Switch } from 'react-router-dom';
+import TaskContainer from './Components/TaskContainer/index'
+import Header from './Components/Header/index';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+// const My404 = () => {
+//   return (
+//     <div>
+//       You are lost
+//     </div>
+//   )
+// }
+//Login Function passing props to Login Component inside header 
+//Register Function passing props to Register Component inside header 
+//Logout Function writing to database - 
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      currentUser: {
+        username: "",
+      },
+      currentTime: new Date().toLocaleString()
+    }
+  }
+  render() {
+    return (
+      <div className="App">
+        <Header />
+        <TaskContainer />
+      </div>
+    );
+  }
 }
 
+
 export default App;
+
+// not using switch until all functionality is in place -- then drop into routes. 

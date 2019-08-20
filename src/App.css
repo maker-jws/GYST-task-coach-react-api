@@ -31,3 +31,23 @@
     transform: rotate(360deg);
   }
 }
+
+h1{
+  background-color: palegoldenrod;
+
+}
+main{
+  background-color: lightblue;
+  height: 90vh;
+}
+
+nav{
+  background-color: paleturquoise
+}
+
+form{
+  float: right;
+  width: 30vw;
+  height: 40vh;
+  border: 1px solid black;
+}
