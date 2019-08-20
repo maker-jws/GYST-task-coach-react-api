@@ -22,7 +22,7 @@ class TaskContainer extends Component {
                 saved: false,
                 created: "",
                 body: "",
-                user_id: this.state.currentUser.user_id,
+                user_id: "",
                 completed: false,
             },
             taskToDelete: {
@@ -31,7 +31,7 @@ class TaskContainer extends Component {
                 saved: false,
                 created: "",
                 body: "",
-                user_id: this.state.currentUser.user_id,
+                user_id: "",
                 completed: false,
             },
             taskToEdit: {
@@ -40,7 +40,7 @@ class TaskContainer extends Component {
                 saved: false,
                 created: "",
                 body: "",
-                user_id: this.state.currentUser.user_id,
+                user_id: "",
                 completed: false,
             },
         }

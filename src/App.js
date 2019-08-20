@@ -27,22 +27,21 @@ class App extends Component {
         logout: "",
         loading: true,
         tasks: [],
-        currentTime: new Date().toLocaleString()
-      }
-    }
-
-    render() {
-      return (
-        <div className="App">
-          <Header />
-          <TaskContainer />
-
-        </div>
-      );
+      },
+      currentTime: new Date().toLocaleString()
     }
   }
+  render() {
+    return (
+      <div className="App">
+        <Header />
+        <TaskContainer />
+      </div>
+    );
+  }
+}
 
 
-  export default App;
+export default App;
 
 // not using switch until all functionality is in place -- then drop into routes. 
