@@ -20,13 +20,7 @@ class App extends Component {
     super(props);
     this.state = {
       currentUser: {
-        user_id: 0,
         username: "",
-        email: "",
-        login: "",
-        logout: "",
-        loading: true,
-        tasks: [],
       },
       currentTime: new Date().toLocaleString()
     }

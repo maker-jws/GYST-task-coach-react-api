@@ -11,6 +11,7 @@ class TaskContainer extends Component {
             currentUser: {
                 user_id: 0,
                 username: "",
+                name: "",
                 email: "",
                 login: "",
                 logout: "",
