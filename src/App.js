@@ -32,7 +32,6 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1> App is Loaded </h1>
         <Header />
         <TaskContainer />
 
