@@ -16,25 +16,7 @@ After clicking on a task a modal will populate offering the user options to chan
 After logging out the uncompleted tasks (that are not saved) are deleted from DB
 Session logout time is updated for user 
 
-# MODELS
-
-## USER
-+ Name (varChar)
-+ Email (Username) (varChar)
-+ PW (varChar) 
-+ Login Time (Date) 
-+ LogOut Time (Date)
-+ UserID   (Integer)
-
-## TASK
-+ Name (varChar)
-+ Priority  (varChar)
-+ Saved (Boolean)
-+ Body (varChar)
-+ Completed (Boolean)
-+ Date Created / Timestamp (Date) 
-+ User ID (Integer)
-
+#React Flow-Chart (In Progress)
 
 
 
