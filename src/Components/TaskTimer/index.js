@@ -7,6 +7,24 @@ class TaskTimer extends Component {
         this.stopTimer = this.stopTimer.bind(this)
         this.resetTimer = this.resetTimer.bind(this)
     }
+    createTarget = () => {
+
+        let targetDate = new Date();
+        targetDate.setDate(targetDate.getDate() + 10);
+
+        // So you can see the date we have created
+        alert(targetDate);
+
+        const dd = targetDate.getDate();
+        const mm = targetDate.getMonth() + 1; // 0 is January, so we must add 1
+        const yyyy = targetDate.getFullYear();
+
+        const dateString = dd + "/" + mm + "/" + yyyy;
+
+        // So you can see the output
+        alert(dateString);
+    }
+
     startTimer() {
         console.log('start')
     }
@@ -20,9 +38,9 @@ class TaskTimer extends Component {
         return (
             <div>
                 <h3>timer: 'time display will be here'</h3>
-                <button onClick={this.startTimer}>start</button>
-                <button onClick={this.stopTimer}>stop</button>
-                <button onClick={this.resetTimer}>reset</button>
+                <button onClick={startTimer.bind(this)}>start</button>
+                <button onClick={stopTimer.bind(this)}>stop</button>
+                <button onClick={resetTimer.bind(this)}>reset</button>
             </div>
         );
     }

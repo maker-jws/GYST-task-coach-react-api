@@ -61,7 +61,7 @@ class CreateTask extends Component {
         const formStyle = {
             minWidth: "300px",
             display: "flex",
-            flexDirection: "column"
+            flexDirection: "colu"
         }
         return (
             <div >
@@ -84,7 +84,7 @@ class CreateTask extends Component {
                         Saved:
             <input type='checkbox' name='checkbox' placeholder="password" />
                     </label>
-                    <button width={100} type="submit">Add Task</button>
+                    <button type="submit">Add Task</button>
                 </form>
             </div>
         )
