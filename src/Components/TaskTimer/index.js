@@ -24,7 +24,6 @@ class TaskTimer extends Component {
         // So you can see the output
         alert(dateString);
     }
-
     startTimer() {
         console.log('start')
     }
@@ -38,9 +37,9 @@ class TaskTimer extends Component {
         return (
             <div>
                 <h3>timer: 'time display will be here'</h3>
-                <button onClick={startTimer.bind(this)}>start</button>
-                <button onClick={stopTimer.bind(this)}>stop</button>
-                <button onClick={resetTimer.bind(this)}>reset</button>
+                <button onClick={this.startTimer.bind(this)}>start</button>
+                <button onClick={this.stopTimer.bind(this)}>stop</button>
+                <button onClick={this.resetTimer.bind(this)}>reset</button>
             </div>
         );
     }
