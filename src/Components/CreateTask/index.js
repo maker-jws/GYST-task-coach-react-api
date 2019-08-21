@@ -4,6 +4,35 @@ class CreateTask extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            taskname: "",
+            priority: "",
+            saved: false,
+            created: "",
+            body: "",
+            user_id: 1,
+            completed: false,
+        }
+    }
+
+    handleChange = (e) => {
+        this.setState({ [e.target.name]: e.target.value });
+    }
+    handleNewSubmit = (e) => {
+        // e.preventDefault();
+
+        const data = new FormData();
+        data.append('taskname', this.state.taskname);
+        data.append('priority', this.state.priority);
+        data.append('body', this.state.body)
+        data.append('user_id', this.state.user_id);
+
+        ///for testing
+        // console.log(data.json(), ' this is data')
+        for (let pair of data.entries()) {
+            console.log(pair[0], ', ', pair[1])
+        }
+        this.props.createTask(data);
+        this.setState({
             newTask: {
                 taskname: "",
                 priority: "",
@@ -13,26 +42,8 @@ class CreateTask extends Component {
                 user_id: 1,
                 completed: false,
             }
-        }
-    }
-    handleChange = (e) => {
-        this.setState({ [e.target.name]: e.target.value });
-    }
-    handleNewSubmit = (e) => {
-        e.preventDefault();
-
-        const data = new FormData();
-        data.append('taskname', this.state.taskname);
-        data.append('priority', this.state.priority);
-        data.append('body', this.state.body)
-        data.append('user_id', this.state.user_id);
-
-        ///for testing
-        console.log(data.entries(), ' this is data')
-        for (let pair of data.entries()) {
-            console.log(pair[0], ', ', pair[1])
-        }
-        this.props.createTask(data);
+        })
+        //clearstate
         // const newTaskCall = this.props.createTask(data);
 
         // newTaskCall.then((data) => { //This is only needed for a redirect after successfully submitting user 
@@ -45,11 +56,17 @@ class CreateTask extends Component {
         //     }
         // })
     }
+
     render() {
+        const formStyle = {
+            minWidth: "300px",
+            display: "flex",
+            flexDirection: "colu"
+        }
         return (
-            <div>
+            <div >
                 <h1>New Task</h1>
-                <form onSubmit={this.handleNewSubmit}>
+                <form onSubmit={this.handleNewSubmit} style={formStyle}>
                     <label>
                         Task Name:
             <input type='text' name='taskname' value={this.state.taskname} placeholder="Taskname" onChange={this.handleChange} />

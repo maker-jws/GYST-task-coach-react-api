@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import CreateTask from '../CreateTask/index';
-import TaskList from '../TaskList/index'
-// import MovieList from '../MovieList/index'
-// import EditMovie from '../EditMovie/index'
+import TaskList from '../TaskList/index';
+import CurrentTime from '../CurrentClock/index';
+import TaskTimer from '../TaskTimer/index'
 
 class TaskContainer extends Component {
     constructor(props) {
@@ -18,30 +18,17 @@ class TaskContainer extends Component {
                 logout: "",
             },
             isLogged: false,
-            // taskToDelete: {
-            //     taskname: "",
-            //     priority: "",
-            //     saved: false,
-            //     created: "",
-            //     body: "",
-            //     user_id: "",
-            //     completed: false,
-            // },
-            // taskToEdit: {
-            //     taskname: "",
-            //     priority: "",
-            //     saved: false,
-            //     created: "",
-            //     body: "",
-            //     user_id: "",
-            //     completed: false,
-            // },
+            currentTime: "",
+            taskDuration: 25,
         }
     }
     componentDidMount() {
         console.log('state did change');
         this.getTasks();
-
+        this.ClockUpdate = setInterval(
+            () => this.handleClockChange(),
+            999
+        );
     }
     addTask = async (data) => {
         try {
@@ -51,7 +38,6 @@ class TaskContainer extends Component {
                 body: data,
                 headers: {
                     'enctype': 'multipart/form-data',
-                    'Access-Control-Allow-Origin': true
                 }
             });
 
@@ -65,7 +51,16 @@ class TaskContainer extends Component {
         }
     }
     // Need to dicuss how we will display tasks / edit events/ 
-    handleFormChange = (e) => {   //will help us edit the state for modified tasks component
+
+    handleClockChange() {
+        const timeNow = new Date().toLocaleString()
+        const timeMS = Date.parse(timeNow)
+        this.setState({
+            currentTime: timeNow
+        });
+    }
+    handleFormChange = (e) => {
+        //will help us edit the state for modified tasks component
         this.setState({
             taskToEdit: {
                 ...this.state.taskToEdit,
@@ -101,18 +96,41 @@ class TaskContainer extends Component {
         const flexStyle = {
             "display": "flex",
             "justifyContent": "space-between",
-            "border": "1px solid black"
+            "border": "1px solid black",
+            "flexDirection": "row",
+            // "flexWrap": "wrap",
         }
         return (
             <main>
-                <h1>This is the Task Container Component</h1>
+                <div><TaskTimer /></div>
                 <div style={flexStyle}>
-                    <TaskList taskList={this.state.tasks} />
-                    <CreateTask createTask={this.addTask} />
+                    <div><TaskList taskList={this.state.tasks} /></div>
+                    <div><CreateTask createTask={this.addTask} /></div>
                 </div>
-            </main>
+                <div><CurrentTime currentTime={this.state.currentTime} /></div>
+
+            </main >
         );
     }
 }
 
 export default TaskContainer;
+
+// taskToDelete: {
+            //     taskname: "",
+            //     priority: "",
+            //     saved: false,
+            //     created: "",
+            //     body: "",
+            //     user_id: "",
+            //     completed: false,
+            // },
+            // taskToEdit: {
+            //     taskname: "",
+            //     priority: "",
+            //     saved: false,
+            //     created: "",
+            //     body: "",
+            //     user_id: "",
+            //     completed: false,
+            // },
