@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
 import CreateTask from '../CreateTask/index';
 import TaskList from '../TaskList/index';
+
+import EditTask from '../EditTask'
 import CurrentTime from '../CurrentClock/index';
 import TaskTimer from '../TaskTimer/index'
+
 
 class TaskContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {
             tasks: [],
+            showEditModal: false,
             currentUser: {
                 user_id: 0,
                 username: "",
@@ -18,6 +22,24 @@ class TaskContainer extends Component {
                 logout: "",
             },
             isLogged: false,
+            // taskToDelete: {
+            //     taskname: "",
+            //     priority: "",
+            //     saved: false,
+            //     created: "",
+            //     body: "",
+            //     user_id: "",
+            //     completed: false,
+            // },
+            taskToEdit: {
+                taskname: "",
+                priority: "",
+                saved: false,
+                created: "",
+                body: "",
+                user_id: "",
+                completed: false,
+            },
             currentTime: "",
             taskDuration: 25,
         }
@@ -92,6 +114,45 @@ class TaskContainer extends Component {
             console.log(err, 'getTasks Error');
         }
     }
+    showModal = (task) => {
+        console.log(task, "this is the task");
+        this.setState({
+            taskToEdit: task,
+            showEditModal: !this.state.showEditModal
+        })
+    }
+editTask = async (e) => {
+   e.preventDefault();
+   try {
+       const getOneTask = await fetch('http://localhost:8000/task/v1/tasks.sqlite' + this.state.taskToEdit.taskname, { //insert id here
+           method: 'PUT',
+           credentials: 'include',
+           body: JSON.stringify(this.state.employeeToEdit),
+           headers: {
+               'Content-Type': 'application/json'
+           }
+       });
+       if (getOneTask !== 200) {
+           throw Error('Request is not working')
+       }
+       const editResponse = await getOneTask.json()
+       const editedtasks = this.state.tasks.map(task => {
+           if (task.taskname == editResponse.data.taskname) {
+               task = editResponse.data
+               return task;
+           }
+           this.setState({
+               tasks: editedtasks,
+               showEditModal: false
+           });
+           console.log(editResponse)
+       })
+   }
+   catch (err) {
+       console.log(err, 'this is the edit error');
+       return err;
+   };
+}
     render() {
         const flexStyle = {
             "display": "flex",
@@ -104,33 +165,18 @@ class TaskContainer extends Component {
             <main>
                 <div><TaskTimer /></div>
                 <div style={flexStyle}>
-                    <div><TaskList taskList={this.state.tasks} /></div>
-                    <div><CreateTask createTask={this.addTask} /></div>
+                    <TaskList taskList={this.state.tasks} />
+                    <CreateTask createTask={this.addTask} />
+                    <EditTask 
+                    editTask={this.editTask}
+                    handleFormChange={this.handleFormChange}
+                    taskToEdit={this.state.taskToEdit}
+                    />
                 </div>
                 <div><CurrentTime currentTime={this.state.currentTime} /></div>
-
             </main >
         );
     }
 }
 
 export default TaskContainer;
-
-// taskToDelete: {
-            //     taskname: "",
-            //     priority: "",
-            //     saved: false,
-            //     created: "",
-            //     body: "",
-            //     user_id: "",
-            //     completed: false,
-            // },
-            // taskToEdit: {
-            //     taskname: "",
-            //     priority: "",
-            //     saved: false,
-            //     created: "",
-            //     body: "",
-            //     user_id: "",
-            //     completed: false,
-            // },
