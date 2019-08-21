@@ -61,7 +61,7 @@ class CreateTask extends Component {
         const formStyle = {
             minWidth: "300px",
             display: "flex",
-            flexDirection: "colu"
+            flexDirection: "column"
         }
         return (
             <div >
