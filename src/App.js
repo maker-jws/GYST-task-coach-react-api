@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 // import { Route, Switch } from 'react-router-dom';
 import TaskContainer from './Components/TaskContainer/index'
@@ -21,6 +21,8 @@ class App extends Component {
     this.state = {
       currentUser: {
         username: "",
+        login: "",
+        logout: ""
       },
       currentTime: new Date().toLocaleString()
     }
