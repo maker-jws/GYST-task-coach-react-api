@@ -7,6 +7,7 @@ import { Button, Form, Grid, Image, Message, Card, Icon} from 'semantic-ui-react
 
 function Header() {
     return (
+
 <div class="ui inverted segment">
   <div class="ui inverted secondary menu">
     <a class="active item">
@@ -20,8 +21,6 @@ function Header() {
     </a>
   </div>
 </div>
-
-
-    )
+)
 }
 export default Header;

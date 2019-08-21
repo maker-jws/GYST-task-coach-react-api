@@ -50,3 +50,16 @@ form{
   height: 40vh;
   border: 1px solid black;
 }
+
+button{
+  
+  margin: 0 auto;
+}
+li>button{
+  width: 64px;
+  height: 32px;
+}
+li>p{
+  margin: 0 1rem;
+  padding-top: 1rem;
+}
