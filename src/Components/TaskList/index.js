@@ -27,8 +27,8 @@ function TaskList(props) {
         return (
             <li key={taskCount} style={listStyle}>
                 <p>{task.taskname}</p>
-                <p><button>-</button>
-                    <button>+</button></p>
+                <p><button>Del</button>
+                    <button onClick={props.displayEditModal}>Edit</button></p>
             </li>
         )
     })
