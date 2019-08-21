@@ -113,11 +113,13 @@ class TaskContainer extends Component {
         }
     }
     displayEditModal = (task) => {
+        console.log(this.state.taskToEdit, 'this is the state');
         console.log(task, "this is the task");
         this.setState({
-            taskToEdit: task.data,
+            taskToEdit: { ...task },
             showEditModal: !this.state.showEditModal
         })
+        console.log(this.state.taskToEdit, 'this is after setting state');
     }
     editTask = async (e) => {
         e.preventDefault();
@@ -163,7 +165,7 @@ class TaskContainer extends Component {
             <main>
                 <div><TaskTimer /></div>
                 <div style={flexStyle}>
-                    <TaskList taskList={this.state.tasks} editTask={this.editTask} displayEditModal={this.displayEditModal} />
+                    <TaskList taskList={this.state.tasks} editTask={this.editTask} getTaskToEdit={this.getTaskToEdit} displayEditModal={this.displayEditModal} />
                     <CreateTask createTask={this.addTask} />
                     {this.state.showEditModal === true ?
                         <EditTask
