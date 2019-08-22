@@ -36,6 +36,7 @@ class TaskContainer extends Component {
                 created: "",
                 body: "",
                 user_id: "",
+                id: 0,
                 completed: false,
             },
             currentTime: "",
@@ -112,6 +113,7 @@ class TaskContainer extends Component {
             console.log(err, 'getTasks Error');
         }
     }
+
     displayEditModal = (task) => {
         console.log(this.state.taskToEdit, 'this is the state');
         console.log(task, "this is the task");
@@ -121,13 +123,17 @@ class TaskContainer extends Component {
         })
         console.log(this.state.taskToEdit, 'this is after setting state');
     }
-    editTask = async (e) => {
-        e.preventDefault();
+    editTask = async (form_data) => {
+
         try {
-            const getOneTask = await fetch('http://localhost:8000/task/v1/' + this.state.taskToEdit.taskname, { //insert id here
+            this.setState(
+                { taskToEdit: form_data }
+            )
+            console.log(this.state.taskToEdit)
+            const getOneTask = await fetch('http://localhost:8000/task/v1/' + this.state.taskToEdit.id, { //insert id here
                 method: 'PUT',
                 credentials: 'include',
-                body: JSON.stringify(this.state.employeeToEdit),
+                body: JSON.stringify(form_data),
                 headers: {
                     'Content-Type': 'application/json'
                 }
@@ -165,7 +171,7 @@ class TaskContainer extends Component {
             <main>
                 <div><TaskTimer /></div>
                 <div style={flexStyle}>
-                    <TaskList taskList={this.state.tasks} editTask={this.editTask} getTaskToEdit={this.getTaskToEdit} displayEditModal={this.displayEditModal} />
+                    <TaskList taskList={this.state.tasks} editTask={this.editTask} displayEditModal={this.displayEditModal} />
                     <CreateTask createTask={this.addTask} />
                     {this.state.showEditModal === true ?
                         <EditTask

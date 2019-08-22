@@ -1,38 +1,42 @@
 import React, { Component } from 'react';
+import { thisExpression } from '@babel/types';
 
 class EditTask extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            newTask: {
-                taskname: "",
-                priority: "",
-                saved: false,
-                created: "",
-                body: "",
-                user_id: 1,
-                completed: false,
-            }
+            taskname: this.props.taskToEdit.taskname,
+            priority: this.props.taskToEdit.priority,
+            saved: this.props.taskToEdit.saved,
+            created: this.props.taskToEdit.created,
+            body: this.props.taskToEdit.body,
+            user_id: this.props.taskToEdit.user_id,
+            completed: this.props.taskToEdit.completed,
+            id: this.props.taskToEdit.id,
         }
     }
     handleChange = (e) => {
-        this.setState({ [e.target.name]: e.target.value });
+        console.log(e.target.value)
+        this.setState(
+            { [e.target.name]: e.target.value }
+        );
     }
-    handleNewSubmit = (e) => {
+    handleNewEdit = (e) => {
         e.preventDefault();
 
         const data = new FormData();
+        data.append('id', this.state.id)
         data.append('taskname', this.state.taskname);
         data.append('priority', this.state.priority);
+        data.append('created', this.state.created)
         data.append('body', this.state.body)
         data.append('user_id', this.state.user_id);
-
         ///for testing
         console.log(data.entries(), ' this is data')
-        for (let pair of data.entries()) {
-            console.log(pair[0], ', ', pair[1])
+        for (let key of data.entries()) {
+            console.log(key[0], ', ', key[1])
         }
-        this.props.EditTask(data);
+        this.props.editTask(data);
         // const newTaskCall = this.props.createTask(data);
 
         // newTaskCall.then((data) => { //This is only needed for a redirect after successfully submitting user 
@@ -49,7 +53,7 @@ class EditTask extends Component {
         return (
             <div>
                 <h1>Edit Task</h1>
-                <form onSubmit={this.handleNewSubmit}>
+                <form onSubmit={this.handleNewEdit}>
                     <label>
                         Task Name:
             <input type='text' name='taskname' value={this.state.taskname} placeholder="Taskname" onChange={this.handleChange} />
