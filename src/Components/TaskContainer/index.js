@@ -36,6 +36,7 @@ class TaskContainer extends Component {
                 created: "",
                 body: "",
                 user_id: "",
+                id: 0,
                 completed: false,
             },
             currentTime: "",
@@ -74,7 +75,7 @@ class TaskContainer extends Component {
 
     handleClockChange() {
         const timeNow = new Date().toLocaleString()
-        const timeMS = Date.parse(timeNow)
+        // const timeMS = Date.parse(timeNow)
         this.setState({
             currentTime: timeNow
         });
@@ -87,6 +88,17 @@ class TaskContainer extends Component {
                 [e.target.name]: e.target.value
             }
         })
+    }
+    getCurrentUser = async () => {
+        try {
+            console.log('getCurrentUser Fired')
+            //this.setState({
+            //this.props.currentUser //getting app.js
+            //islogged: !this.state.isLogged
+            // })
+        } catch (err) {
+            console.log(err)
+        }
     }
     getTasks = async () => {
         try {
@@ -112,6 +124,7 @@ class TaskContainer extends Component {
             console.log(err, 'getTasks Error');
         }
     }
+
     displayEditModal = (task) => {
         console.log(this.state.taskToEdit, 'this is the state');
         console.log(task, "this is the task");
@@ -121,13 +134,17 @@ class TaskContainer extends Component {
         })
         console.log(this.state.taskToEdit, 'this is after setting state');
     }
-    editTask = async (e) => {
-        e.preventDefault();
+    editTask = async (form_data) => {
+
         try {
-            const getOneTask = await fetch('http://localhost:8000/task/v1/' + this.state.taskToEdit.taskname, { //insert id here
+            this.setState(
+                { taskToEdit: form_data }
+            )
+            console.log(this.state.taskToEdit)
+            const getOneTask = await fetch('http://localhost:8000/task/v1/' + this.state.taskToEdit.id, { //insert id here
                 method: 'PUT',
                 credentials: 'include',
-                body: JSON.stringify(this.state.employeeToEdit),
+                body: JSON.stringify(form_data),
                 headers: {
                     'Content-Type': 'application/json'
                 }
@@ -147,6 +164,7 @@ class TaskContainer extends Component {
                     showEditModal: false
                 });
                 console.log(editResponse)
+                return editedtasks
             })
         }
         catch (err) {
@@ -154,10 +172,10 @@ class TaskContainer extends Component {
             return err;
         };
     }
-  deleteTask = async (id) => {
-    console.log(id, ' delete task ID')
+    deleteTask = async (id) => {
+        console.log(id, ' delete task ID')
 
-    try {
+        try {
 
       const deleteTask = await fetch('http://localhost:8000/task/v1/' + id, {
         method: 'DELETE',
@@ -167,22 +185,24 @@ class TaskContainer extends Component {
         }
       });
 
-      if(deleteTask.status !== 200){
-        throw Error('Something happened on delete')
-      }
 
-      // this object is the actual response from the api
-      const deleteTaskJson = await deleteTask.json();
+            if (deleteTask.status !== 200) {
+                throw Error('Something happened on delete')
+            }
+
+            // this object is the actual response from the api
+            const deleteTaskJson = await deleteTask.json();
 
       this.setState({
         tasks: this.state.tasks.filter((task) => task.id !== id)
       })
 
-    } catch(err){
-      console.log(err);
-      return err
+
+        } catch (err) {
+            console.log(err);
+            return err
+        }
     }
-  }
 
     render() {
         const flexStyle = {
@@ -196,7 +216,9 @@ class TaskContainer extends Component {
             <main>
                 <div><TaskTimer /></div>
                 <div style={flexStyle}>
-                    <TaskList taskList={this.state.tasks} editTask={this.editTask} getTaskToEdit={this.getTaskToEdit} displayEditModal={this.displayEditModal} deleteTask={this.deleteTask} />
+                    //done
+                    <TaskList taskList={this.state.tasks} editTask={this.editTask} displayEditModal={this.displayEditModal} deleteTask={this.deleteTask} />
+                    //done
                     <CreateTask createTask={this.addTask} />
                     {this.state.showEditModal === true ?
                         <EditTask
@@ -204,6 +226,7 @@ class TaskContainer extends Component {
                             handleFormChange={this.handleFormChange}
                             taskToEdit={this.state.taskToEdit} /> : null}
                 </div>
+                //that done
                 <div><CurrentTime currentTime={this.state.currentTime} /></div>
             </main >
         );
