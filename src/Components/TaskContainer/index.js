@@ -152,6 +152,7 @@ class TaskContainer extends Component {
                     showEditModal: false
                 });
                 console.log(editResponse)
+                return editedtasks
             })
         }
         catch (err) {
