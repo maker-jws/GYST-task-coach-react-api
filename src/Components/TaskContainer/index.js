@@ -158,6 +158,7 @@ class TaskContainer extends Component {
                     task = editResponse.data
                     return task;
                 }
+
                 this.setState({
                     tasks: editedtasks,
                     showEditModal: false
@@ -176,10 +177,14 @@ class TaskContainer extends Component {
 
         try {
 
-            const deleteTask = await fetch('http://localhost:8000/task/v1/task/' + id, {
-                method: 'DELETE',
-                credentials: 'include'
-            });
+      const deleteTask = await fetch('http://localhost:8000/task/v1/' + id, {
+        method: 'DELETE',
+        credentials: 'include',
+        headers: {
+            'Content-Type': 'application/json' //may not need 
+        }
+      });
+
 
             if (deleteTask.status !== 200) {
                 throw Error('Something happened on delete')
@@ -188,9 +193,10 @@ class TaskContainer extends Component {
             // this object is the actual response from the api
             const deleteTaskJson = await deleteTask.json();
 
-            this.setState({
-                tasks: this.state.tasks.filter((task) => task._id !== id)
-            })
+      this.setState({
+        tasks: this.state.tasks.filter((task) => task.id !== id)
+      })
+
 
         } catch (err) {
             console.log(err);
