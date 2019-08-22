@@ -2,41 +2,91 @@ import React, { Component } from 'react';
 class TaskTimer extends Component {
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {
+            minute: 25,
+            second: "00",
+            ms: "00",
+            interval: 12,
+            isPaused: true,
+        }
         this.startTimer = this.startTimer.bind(this)
         this.stopTimer = this.stopTimer.bind(this)
         this.resetTimer = this.resetTimer.bind(this)
+        console.log(this)
     }
-    createTarget = () => {
+    componentDidMount() {
 
-        let targetDate = new Date();
-        targetDate.setDate(targetDate.getDate() + 10);
-
-        // So you can see the date we have created
-        alert(targetDate);
-
-        const dd = targetDate.getDate();
-        const mm = targetDate.getMonth() + 1; // 0 is January, so we must add 1
-        const yyyy = targetDate.getFullYear();
-
-        const dateString = dd + "/" + mm + "/" + yyyy;
-
-        // So you can see the output
-        alert(dateString);
+    }
+    changeTaskClock() {
+        this.setState({ ms: this.state.ms - 1 })
+        if (this.state.ms < 0) {
+            // console.log('this is being activated MS')
+            this.setState({
+                ms: 100,
+                second: this.state.second - 1,
+            })
+        } else if (this.state.second <= 0) {
+            // console.log('this is being activated SEC/MIN')
+            this.setState({
+                second: 59,
+                minute: this.state.minute - 1,
+            })
+        } else if (this.state.minute < 0) {
+            // console.log('this is being activated TIMEOUT')
+            //initate taskcontainer state tasks shuffle
+            clearInterval(this.updateClock);
+        }
     }
     startTimer() {
-        console.log('start')
+        this.updateClock = setInterval(() => {
+            this.changeTaskClock();
+            // if (this.state.ms === 0) { console.log(this.state) } //- This is working 
+        }, 12);
+        console.log(this.state.second)
+    }
+    storeTime() {
+        const minStore = this.state.minute
+        const secStore = this.state.second
+        const msStore = this.state.ms
+        const timeArray = [minStore, secStore, msStore]
+        console.log(timeArray);
+        return timeArray;
     }
     stopTimer() {
-        console.log('stop')
+        const currentVals = this.storeTime();
+        console.log(currentVals)
+        clearInterval(this.updateClock)
+        if (this.state.isPaused === false) {
+            clearInterval(this.updateClock)
+            console.log(this.state.isPaused, 'signaled if false')
+            this.setState({
+                minute: currentVals[0],
+                second: currentVals[1],
+                ms: currentVals[2],
+            })
+            this.componentDidMount();
+        }
+        this.setState({
+            isPaused: !this.state.isPaused
+        })
+
     }
     resetTimer() {
-        console.log('reset')
+        clearInterval(this.updateClock);
+        this.setState({
+            minute: 25,
+            second: "00",
+            ms: "00",
+            interval: 12
+        })
     }
     render() {
+        const minDisp = this.state.minute
+        const secDisp = this.state.second
+        const msDisp = this.state.ms
         return (
             <div>
-                <h3>timer: 'time display will be here'</h3>
+                <h3><span>{minDisp}</span>:<span>{secDisp}</span>:<span>{msDisp}</span>   minutes remaining</h3>
                 <button onClick={this.startTimer}>start</button>
                 <button onClick={this.stopTimer}>stop</button>
                 <button onClick={this.resetTimer}>reset</button>

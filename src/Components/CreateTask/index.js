@@ -18,7 +18,7 @@ class CreateTask extends Component {
         this.setState({ [e.target.name]: e.target.value });
     }
     handleNewSubmit = (e) => {
-        // e.preventDefault();
+        e.preventDefault();
 
         const data = new FormData();
         data.append('taskname', this.state.taskname);
@@ -56,7 +56,6 @@ class CreateTask extends Component {
         //     }
         // })
     }
-
     render() {
         const formStyle = {
             minWidth: "300px",
