@@ -31,7 +31,7 @@ class TaskList extends Component {
             return (
                 <li key={taskCount} style={listStyle}>
                     <p>{task.taskname}</p>
-                    <p><button>Del</button>
+                    <p><button onClick={this.props.deleteTask.bind(null, task._id)}>Del</button>
                         <button onClick={this.props.displayEditModal.bind(null, task)}>Edit</button></p>
                 </li>
             )

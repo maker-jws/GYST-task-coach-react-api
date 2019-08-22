@@ -143,7 +143,7 @@ class TaskContainer extends Component {
             }
             const editResponse = await getOneTask.json()
             const editedtasks = this.state.tasks.map(task => {
-                if (task.taskname == editResponse.data.taskname) {
+                if (task.taskname === editResponse.data.taskname) {
                     task = editResponse.data
                     return task;
                 }
@@ -159,6 +159,33 @@ class TaskContainer extends Component {
             return err;
         };
     }
+  deleteTask = async (id) => {
+    console.log(id, ' delete task ID')
+
+    try {
+
+      const deleteTask = await fetch('http://localhost:8000/task/v1/task/' + id, {
+        method: 'DELETE',
+        credentials: 'include'
+      });
+
+      if(deleteTask.status !== 200){
+        throw Error('Something happened on delete')
+      }
+
+      // this object is the actual response from the api
+      const deleteTaskJson = await deleteTask.json();
+
+      this.setState({
+        tasks: this.state.tasks.filter((task) => task._id !== id)
+      })
+
+    } catch(err){
+      console.log(err);
+      return err
+    }
+  }
+
     render() {
         const flexStyle = {
             "display": "flex",
@@ -171,7 +198,7 @@ class TaskContainer extends Component {
             <main>
                 <div><TaskTimer /></div>
                 <div style={flexStyle}>
-                    <TaskList taskList={this.state.tasks} editTask={this.editTask} displayEditModal={this.displayEditModal} />
+                    <TaskList taskList={this.state.tasks} editTask={this.editTask}  displayEditModal={this.displayEditModal} deleteTask={this.deleteTask} />
                     <CreateTask createTask={this.addTask} />
                     {this.state.showEditModal === true ?
                         <EditTask
