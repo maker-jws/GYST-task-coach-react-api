@@ -75,7 +75,7 @@ class TaskContainer extends Component {
 
     handleClockChange() {
         const timeNow = new Date().toLocaleString()
-        const timeMS = Date.parse(timeNow)
+        // const timeMS = Date.parse(timeNow)
         this.setState({
             currentTime: timeNow
         });
@@ -88,6 +88,17 @@ class TaskContainer extends Component {
                 [e.target.name]: e.target.value
             }
         })
+    }
+    getCurrentUser = async () => {
+        try {
+            console.log('getCurrentUser Fired')
+            //this.setState({
+            //this.props.currentUser //getting app.js
+            //islogged: !this.state.isLogged
+            // })
+        } catch (err) {
+            console.log(err)
+        }
     }
     getTasks = async () => {
         try {
@@ -160,32 +171,32 @@ class TaskContainer extends Component {
             return err;
         };
     }
-  deleteTask = async (id) => {
-    console.log(id, ' delete task ID')
+    deleteTask = async (id) => {
+        console.log(id, ' delete task ID')
 
-    try {
+        try {
 
-      const deleteTask = await fetch('http://localhost:8000/task/v1/task/' + id, {
-        method: 'DELETE',
-        credentials: 'include'
-      });
+            const deleteTask = await fetch('http://localhost:8000/task/v1/task/' + id, {
+                method: 'DELETE',
+                credentials: 'include'
+            });
 
-      if(deleteTask.status !== 200){
-        throw Error('Something happened on delete')
-      }
+            if (deleteTask.status !== 200) {
+                throw Error('Something happened on delete')
+            }
 
-      // this object is the actual response from the api
-      const deleteTaskJson = await deleteTask.json();
+            // this object is the actual response from the api
+            const deleteTaskJson = await deleteTask.json();
 
-      this.setState({
-        tasks: this.state.tasks.filter((task) => task._id !== id)
-      })
+            this.setState({
+                tasks: this.state.tasks.filter((task) => task._id !== id)
+            })
 
-    } catch(err){
-      console.log(err);
-      return err
+        } catch (err) {
+            console.log(err);
+            return err
+        }
     }
-  }
 
     render() {
         const flexStyle = {
@@ -199,7 +210,9 @@ class TaskContainer extends Component {
             <main>
                 <div><TaskTimer /></div>
                 <div style={flexStyle}>
-                    <TaskList taskList={this.state.tasks} editTask={this.editTask}  displayEditModal={this.displayEditModal} deleteTask={this.deleteTask} />
+                    //done
+                    <TaskList taskList={this.state.tasks} editTask={this.editTask} displayEditModal={this.displayEditModal} deleteTask={this.deleteTask} />
+                    //done
                     <CreateTask createTask={this.addTask} />
                     {this.state.showEditModal === true ?
                         <EditTask
@@ -207,6 +220,7 @@ class TaskContainer extends Component {
                             handleFormChange={this.handleFormChange}
                             taskToEdit={this.state.taskToEdit} /> : null}
                 </div>
+                //that done
                 <div><CurrentTime currentTime={this.state.currentTime} /></div>
             </main >
         );

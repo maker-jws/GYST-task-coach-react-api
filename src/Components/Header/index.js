@@ -10,13 +10,13 @@ function Header() {
 
         <div className="ui inverted segment">
             <div className="ui inverted secondary menu">
-                <a className="active item">
+                <a className="active item" href="#">
                     Home
     </a>
-                <a className="item">
+                <a className="item" href="#">
                     Add Task
     </a>
-                <a className="item">
+                <a className="item" href="#">
                     Logout
     </a>
             </div>

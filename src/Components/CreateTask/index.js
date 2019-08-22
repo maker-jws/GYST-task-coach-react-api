@@ -56,7 +56,6 @@ class CreateTask extends Component {
         //     }
         // })
     }
-
     render() {
         const formStyle = {
             minWidth: "300px",
