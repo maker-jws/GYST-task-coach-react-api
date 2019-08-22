@@ -16,14 +16,13 @@ class EditTask extends Component {
         }
     }
     handleChange = (e) => {
-        console.log(e.target.value)
+        // console.log(e.target.value)
         this.setState(
             { [e.target.name]: e.target.value }
         );
     }
     handleNewEdit = (e) => {
         e.preventDefault();
-
         const data = new FormData();
         data.append('id', this.state.id)
         data.append('taskname', this.state.taskname);
@@ -32,7 +31,7 @@ class EditTask extends Component {
         data.append('body', this.state.body)
         data.append('user_id', this.state.user_id);
         ///for testing
-        console.log(data.entries(), ' this is data')
+        console.log(data, 'this is the data')
         for (let key of data.entries()) {
             console.log(key[0], ', ', key[1])
         }

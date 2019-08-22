@@ -125,47 +125,61 @@ class TaskContainer extends Component {
         }
     }
 
-    displayEditModal = (task) => {
-        console.log(this.state.taskToEdit, 'this is the state');
-        console.log(task, "this is the task");
-        this.setState({
-            taskToEdit: { ...task },
-            showEditModal: !this.state.showEditModal
+    displayEditModal = async (task) => {
+        try{
+            console.log(task, "this is the task");
+            console.log(task.taskname)
+            this.setState({
+                taskToEdit: task,
+                showEditModal: !this.state.showEditModal
         })
         console.log(this.state.taskToEdit, 'this is after setting state');
+    } catch(err){
+        console.log(err);
+    }
+        
     }
     editTask = async (form_data) => {
 
         try {
+            console.log(form_data);
             this.setState(
-                { taskToEdit: form_data }
+                { taskToEdit: {...form_data }}
             )
             console.log(this.state.taskToEdit)
+            
             const getOneTask = await fetch('http://localhost:8000/task/v1/' + this.state.taskToEdit.id, { //insert id here
                 method: 'PUT',
                 credentials: 'include',
-                body: JSON.stringify(form_data),
+                body: form_data,
                 headers: {
-                    'Content-Type': 'application/json'
+                    'enctype': 'multipart/form-data',
                 }
             });
-            if (getOneTask !== 200) {
+            console.log(getOneTask)
+            const editResponse = await getOneTask.json()
+            if (editResponse.status.code !== 200) {
                 throw Error('Request is not working')
             }
-            const editResponse = await getOneTask.json()
+            
+            console.log(editResponse, 'return from db');
+
             const editedtasks = this.state.tasks.map(task => {
-                if (task.taskname === editResponse.data.taskname) {
+                if (task.id === editResponse.data.id) {
                     task = editResponse.data
+                    console.log(task);
+                    return task;
+                } else {
                     return task;
                 }
 
+            })
                 this.setState({
                     tasks: editedtasks,
                     showEditModal: false
                 });
-                console.log(editResponse)
+                console.log(editedtasks, 'editedtasks')
                 return editedtasks
-            })
         }
         catch (err) {
             console.log(err, 'this is the edit error');
@@ -217,7 +231,7 @@ class TaskContainer extends Component {
                 <div><TaskTimer /></div>
                 <div style={flexStyle}>
                     //done
-                    <TaskList taskList={this.state.tasks} editTask={this.editTask} displayEditModal={this.displayEditModal} deleteTask={this.deleteTask} />
+                    <TaskList taskList={this.state.tasks} displayEditModal={this.displayEditModal} deleteTask={this.deleteTask} />
                     //done
                     <CreateTask createTask={this.addTask} />
                     {this.state.showEditModal === true ?
