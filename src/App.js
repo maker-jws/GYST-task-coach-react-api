@@ -92,12 +92,12 @@ class App extends Component {
       <div className="App">
         <Header />
         {this.state.currentUser.username ? (
-          <TaskContainer />) : (
-            <div>
-              <Login handleLoginSubmit={this.handleLoginSubmit} />
-              <Register registerSubmit={this.handleRegisterSubmit} />
-            </div>
-          )}
+          <TaskContainer /> ) : (
+          <div>
+            <Login handleLoginSubmit={this.handleLoginSubmit} />
+            <Register registerSubmit={this.handleRegisterSubmit} />
+          </div>
+        )}
       </div>
     );
   }
@@ -105,41 +105,3 @@ class App extends Component {
 
 export default App;
 
-// not using switch until all functionality is in place -- then drop into routes.
-// const My404 = () => {
-//   return (
-//     <div>
-//       You are lost
-//     </div>
-//   )
-// }
-//Login Function passing props to Login Component inside header
-//Register Function passing props to Register Component inside header
-//Logout Function writing to database -
-
-// register = async (data) => {
-//   try {
-
-//     const registerResponse = await fetch('http://localhost:8000/user/register', {
-//       method: 'POST',
-//       credentials: 'include',// on every request we have to send the cookie
-//       body: data,
-//       headers: {
-//         'enctype': 'multipart/form-data'
-//       }
-//     })
-
-//     const parsedResponse = await registerResponse.json();
-
-//     console.log(parsedResponse)
-
-//     this.setState({
-//       ...parsedResponse.data,
-//       loading: false
-//     })
-//     return parsedResponse;
-
-//   } catch (err) {
-//     console.log(err)
-//   }
-// }
