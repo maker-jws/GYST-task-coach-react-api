@@ -126,28 +126,28 @@ class TaskContainer extends Component {
     }
 
     displayEditModal = async (task) => {
-        try{
+        try {
             console.log(task, "this is the task");
             console.log(task.taskname)
             this.setState({
                 taskToEdit: task,
                 showEditModal: !this.state.showEditModal
-        })
-        console.log(this.state.taskToEdit, 'this is after setting state');
-    } catch(err){
-        console.log(err);
-    }
-        
+            })
+            console.log(this.state.taskToEdit, 'this is after setting state');
+        } catch (err) {
+            console.log(err);
+        }
+
     }
     editTask = async (form_data) => {
 
         try {
             console.log(form_data);
             this.setState(
-                { taskToEdit: {...form_data }}
+                { taskToEdit: { ...form_data } }
             )
             console.log(this.state.taskToEdit)
-            
+
             const getOneTask = await fetch('http://localhost:8000/task/v1/' + this.state.taskToEdit.id, { //insert id here
                 method: 'PUT',
                 credentials: 'include',
@@ -161,7 +161,7 @@ class TaskContainer extends Component {
             if (editResponse.status.code !== 200) {
                 throw Error('Request is not working')
             }
-            
+
             console.log(editResponse, 'return from db');
 
             const editedtasks = this.state.tasks.map(task => {
@@ -174,12 +174,12 @@ class TaskContainer extends Component {
                 }
 
             })
-                this.setState({
-                    tasks: editedtasks,
-                    showEditModal: false
-                });
-                console.log(editedtasks, 'editedtasks')
-                return editedtasks
+            this.setState({
+                tasks: editedtasks,
+                showEditModal: false
+            });
+            console.log(editedtasks, 'editedtasks')
+            return editedtasks
         }
         catch (err) {
             console.log(err, 'this is the edit error');
@@ -191,13 +191,13 @@ class TaskContainer extends Component {
 
         try {
 
-      const deleteTask = await fetch('http://localhost:8000/task/v1/' + id, {
-        method: 'DELETE',
-        credentials: 'include',
-        headers: {
-            'Content-Type': 'application/json' //may not need 
-        }
-      });
+            const deleteTask = await fetch('http://localhost:8000/task/v1/' + id, {
+                method: 'DELETE',
+                credentials: 'include',
+                headers: {
+                    'Content-Type': 'application/json' //may not need 
+                }
+            });
 
 
             if (deleteTask.status !== 200) {
@@ -207,9 +207,9 @@ class TaskContainer extends Component {
             // this object is the actual response from the api
             const deleteTaskJson = await deleteTask.json();
 
-      this.setState({
-        tasks: this.state.tasks.filter((task) => task.id !== id)
-      })
+            this.setState({
+                tasks: this.state.tasks.filter((task) => task.id !== id)
+            })
 
 
         } catch (err) {
@@ -230,9 +230,7 @@ class TaskContainer extends Component {
             <main>
                 <div><TaskTimer /></div>
                 <div style={flexStyle}>
-                    //done
                     <TaskList taskList={this.state.tasks} displayEditModal={this.displayEditModal} deleteTask={this.deleteTask} />
-                    //done
                     <CreateTask createTask={this.addTask} />
                     {this.state.showEditModal === true ?
                         <EditTask
@@ -240,7 +238,6 @@ class TaskContainer extends Component {
                             handleFormChange={this.handleFormChange}
                             taskToEdit={this.state.taskToEdit} /> : null}
                 </div>
-                //that done
                 <div><CurrentTime currentTime={this.state.currentTime} /></div>
             </main >
         );

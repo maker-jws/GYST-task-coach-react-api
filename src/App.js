@@ -58,15 +58,6 @@ class App extends Component {
   handleRegisterSubmit = async data => {
     try {
       console.log(data);
-      // this.setState({
-      //   ...this.state.regUser,
-      //   regUser: {
-      //     username: data.username,
-      //     email: data.email,
-      //     password: data.password
-      //   }
-      // })
-      // console.log(this.state.regUser)
       const register = await fetch("http://localhost:8000/user/register", {
         method: "POST",
         credentials: "include",
@@ -100,14 +91,13 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-        {this.state.currentUser.username === "tina" ? (
-          <TaskContainer />
-        ) : (
-          <div>
-            <Login handleLoginSubmit={this.handleLoginSubmit} />
-            <Register registerSubmit={this.handleRegisterSubmit} />
-          </div>
-        )}
+        {this.state.currentUser.username}
+        <TaskContainer />
+        <div>
+          <Login handleLoginSubmit={this.handleLoginSubmit} />
+          <Register registerSubmit={this.handleRegisterSubmit} />
+        </div>
+        }
       </div>
     );
   }
