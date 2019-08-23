@@ -43,7 +43,7 @@ class TaskTimer extends Component {
         this.updateClock = setInterval(() => {
             this.changeTaskClock();
             // if (this.state.ms === 0) { console.log(this.state) } //- This is working 
-        }, 12);
+        }, this.state.interval);
         console.log(this.state.second)
     }
     storeTime() {
@@ -96,8 +96,8 @@ class TaskTimer extends Component {
     resetTimer() {
         clearInterval(this.updateClock);
         this.setState({
-            minute: 0,
-            second: 20,
+            minute: 25,
+            second: "00",
             ms: "00",
             interval: 12
         })

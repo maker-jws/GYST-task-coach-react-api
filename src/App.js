@@ -91,13 +91,13 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-        {this.state.currentUser.username}
-        <TaskContainer />
-        <div>
-          <Login handleLoginSubmit={this.handleLoginSubmit} />
-          <Register registerSubmit={this.handleRegisterSubmit} />
-        </div>
-        }
+        {this.state.currentUser.username ? (
+          <TaskContainer />) : (
+            <div>
+              <Login handleLoginSubmit={this.handleLoginSubmit} />
+              <Register registerSubmit={this.handleRegisterSubmit} />
+            </div>
+          )}
       </div>
     );
   }
