@@ -100,7 +100,7 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-        {this.state.currentUser.username === "tina" ? (
+        {this.state.currentUser.username ? (
           <TaskContainer />
         ) : (
           <div>
