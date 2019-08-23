@@ -8,6 +8,7 @@ class TaskTimer extends Component {
             ms: "00",
             interval: 12,
             isPaused: true,
+            restCount: 0,
         }
         this.startTimer = this.startTimer.bind(this)
         this.stopTimer = this.stopTimer.bind(this)
@@ -35,6 +36,7 @@ class TaskTimer extends Component {
             // console.log('this is being activated TIMEOUT')
             //initate taskcontainer state tasks shuffle
             clearInterval(this.updateClock);
+            this.restTimer();
         }
     }
     startTimer() {
@@ -71,27 +73,53 @@ class TaskTimer extends Component {
         })
 
     }
+    restTimer() {
+        if (this.state.restCount < 4) {
+            this.setState({
+                minute: "05",
+                second: "20",
+                ms: "00",
+                restCount: this.state.restCount + 1
+            })
+        }
+        else {
+            this.setState({
+                minute: "15",
+                second: "00",
+                ms: "00",
+                restCount: 0
+
+            })
+        }
+        this.startTimer()
+    }
     resetTimer() {
         clearInterval(this.updateClock);
         this.setState({
-            minute: 25,
-            second: "00",
+            minute: 0,
+            second: 20,
             ms: "00",
             interval: 12
         })
     }
     render() {
+        const digitStyle = {
+            fontSize: "120pt",
+            fontWeight: "200",
+            lineHeight: "140pt"
+        }
         const minDisp = this.state.minute
         const secDisp = this.state.second
         const msDisp = this.state.ms
         return (
             <div>
-                <h3><span>{minDisp}</span>:<span>{secDisp}</span>:<span>{msDisp}</span>   minutes remaining</h3>
+                <h3><span style={digitStyle}>{minDisp}:</span><span style={digitStyle}>{secDisp}</span>
+                    <span><h1>with {this.state.restCount} rests</h1> </span></h3>
+
                 <button onClick={this.startTimer}>start</button>
                 <button onClick={this.stopTimer}>stop</button>
                 <button onClick={this.resetTimer}>reset</button>
-            </div>
-        );
+            </div>);
     }
 }
 
