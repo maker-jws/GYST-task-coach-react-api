@@ -146,15 +146,3 @@ class App extends Component {
 
 export default App;
 
-// not using switch until all functionality is in place -- then drop into routes.
-// const My404 = () => {
-//   return (
-//     <div>
-//       You are lost
-//     </div>
-//   )
-// }
-//Login Function passing props to Login Component inside header
-//Register Function passing props to Register Component inside header
-//Logout Function writing to database -
-

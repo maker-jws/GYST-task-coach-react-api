@@ -69,7 +69,6 @@ class TaskContainer extends Component {
             console.log(err)
         }
     }
-    // Need to dicuss how we will display tasks / edit events/ 
     componentDidUpdate() {
         if (this.state.showCreateModal !== this.props.displayCreateModal) {
             this.setState({
