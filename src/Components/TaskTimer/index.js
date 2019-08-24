@@ -13,10 +13,6 @@ class TaskTimer extends Component {
         this.startTimer = this.startTimer.bind(this)
         this.stopTimer = this.stopTimer.bind(this)
         this.resetTimer = this.resetTimer.bind(this)
-        console.log(this)
-    }
-    componentDidMount() {
-
     }
     changeTaskClock() {
         this.setState({ ms: this.state.ms - 1 })
