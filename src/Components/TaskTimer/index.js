@@ -13,10 +13,6 @@ class TaskTimer extends Component {
         this.startTimer = this.startTimer.bind(this)
         this.stopTimer = this.stopTimer.bind(this)
         this.resetTimer = this.resetTimer.bind(this)
-        console.log(this)
-    }
-    componentDidMount() {
-
     }
     changeTaskClock() {
         this.setState({ ms: this.state.ms - 1 })
@@ -43,7 +39,7 @@ class TaskTimer extends Component {
         this.updateClock = setInterval(() => {
             this.changeTaskClock();
             // if (this.state.ms === 0) { console.log(this.state) } //- This is working 
-        }, 12);
+        }, this.state.interval);
         console.log(this.state.second)
     }
     storeTime() {
@@ -96,8 +92,8 @@ class TaskTimer extends Component {
     resetTimer() {
         clearInterval(this.updateClock);
         this.setState({
-            minute: 0,
-            second: 20,
+            minute: 25,
+            second: "00",
             ms: "00",
             interval: 12
         })
