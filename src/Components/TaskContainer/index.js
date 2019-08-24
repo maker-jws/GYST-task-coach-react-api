@@ -35,9 +35,6 @@ class TaskContainer extends Component {
             showCreateModal: false,
         }
     }
-    // checkModalStatus() {
-    //     console.log(this.state.showCreateModal, 'in task container', this.props.displayCreateModal, 'inside props')
-    // }
     componentDidMount() {
         console.log('state did change');
         this.getTasks();
