@@ -20,6 +20,7 @@ class App extends Component {
       showRegister: false,
       showLogin: false,
       showAddTask: true,
+      notRegistered: false,
     };
   }
   headerAddTask = () => {
@@ -27,12 +28,6 @@ class App extends Component {
       showAddTask: !(this.state.showAddTask)
     })
     console.log('task button pressed>>>effect:', this.state.showAddTask);
-  }
-  checkAddTaskState = () => {
-    const currentModalState = this.state.showAddTask
-    console.log(this.props.ModalState)
-    console.log('this.checkAddTaskState called')
-    return currentModalState
   }
   handleChange = e => {
     this.setState({ [e.currentTarget.name]: e.currentTarget.value });
@@ -58,7 +53,8 @@ class App extends Component {
             username: data.username,
             login: new Date().toLocaleString(),
             is_active: true
-          }
+          },
+          notRegistered: false
         });
       }
     } catch (err) {
@@ -97,6 +93,11 @@ class App extends Component {
       console.log(err);
     }
   };
+  setNotRegistered = () => {
+    this.setState({
+      notRegistered: true
+    })
+  }
   // handleLogoutClick = async (data) => {
   //   //posting to db : username and logout time 
   //   //store something in data variables 
@@ -135,8 +136,7 @@ class App extends Component {
         {this.state.currentUser.username ? (
           <TaskContainer displayCreateModal={!this.state.showAddTask} />) : (
             <div>
-              <Login handleLoginSubmit={this.handleLoginSubmit} />
-              <Register registerSubmit={this.handleRegisterSubmit} />
+              {this.state.notRegistered ? <Register registerSubmit={this.handleRegisterSubmit} /> : <Login setNotRegistered={this.setNotRegistered} handleLoginSubmit={this.handleLoginSubmit} />}
             </div>
           )}
       </div>
@@ -145,4 +145,3 @@ class App extends Component {
 }
 
 export default App;
-

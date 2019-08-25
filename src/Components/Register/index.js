@@ -15,7 +15,7 @@ class Register extends Component {
 
     }
     handleChange = e => {
-        console.log(this.state)
+        // console.log(this.state)
         this.setState({ [e.currentTarget.name]: e.currentTarget.value });
     };
 
