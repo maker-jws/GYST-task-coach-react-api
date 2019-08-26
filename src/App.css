@@ -1,7 +1,7 @@
 .App {
   text-align: center;
   background-color: rgba(100, 100, 100, 0.897);
-  height: auto;
+  height: 100%;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
 }
 
@@ -14,16 +14,10 @@
   background-color: #E0E0E0;
 }*/
 
-
-/* body{
+main{
   height: auto;
-} */
 
-main {
-  height: 100%;
 }
-
-
 nav {
   background-color: white;
 }
@@ -32,36 +26,39 @@ button {
   margin: 0 auto;
 }
 
-
-
-li>p{
-  margin: 0 1rem;
-  padding-top: 1rem;
-*/
-
 ul {
   padding-inline-end: 10%;
   padding-inline-start: 10%;
 }
 
 .Login-wrapper {
+  display: flex;
+  flex-direction: column;
   background-color: rgb(206, 206, 206);
   padding: .3rem;
   max-width: 35rem;
   width: 25rem;
-  margin: 3rem auto;
+  margin: 10% auto;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: .3rem .3rem;
 }
-
+.Login-logo {
+  border: 1px solid rgba(0, 0, 0, 0.10);
+  border-radius: 50%;
+  /* box-shadow: 0 0 2px rgba(0, 0, 0, 0.1); */
+  /* padding: .15rem; */
+}
 .Login-label {
-  font-weight: bold;
-  font-size: 12pt;
+  /* font-weight: bold; */
+  font-size: 13pt;
   margin-top: 1rem;
 }
 
 .Login-form {
-  margin: .1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: .1rem auto;
   min-height: 33rem;
   padding: 1rem;
   background-color: rgb(240, 240, 240);
@@ -70,8 +67,9 @@ ul {
 }
 
 .Login-input {
-  margin: 1.1rem 1rem;
+  margin: 1.1rem 0;
   line-height: 24pt;
+  width: 100%;
   padding: 0 1rem;
   background-color: rgb(184, 184, 184);
   border: none;
@@ -79,9 +77,9 @@ ul {
 }
 
 .Login-btn {
-  display: inline-block;
   border: none;
-  padding: 1rem 2rem;
+  padding: 1rem;
+  width: 100%;
   margin: 0 0 1rem 0;
   text-decoration: none;
   background: #2a6ab8;
@@ -100,6 +98,8 @@ ul {
 }
 
 .Register-wrapper {
+  display: flex;
+  flex-direction: column;
   background-color: rgb(206, 206, 206);
   padding: .3rem;
   max-width: 35rem;
