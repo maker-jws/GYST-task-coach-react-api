@@ -10,7 +10,8 @@ class Header extends Component {
         is_active: false
       }
     };
-  }
+};
+
   handleAddTaskClick = () => {
     this.props.handleAddTaskClick();
   };
