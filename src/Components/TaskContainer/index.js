@@ -20,15 +20,6 @@ class TaskContainer extends Component {
                 logout: "",
             },
             isLogged: false,
-            // taskToDelete: {
-            //     taskname: "",
-            //     priority: "",
-            //     saved: false,
-            //     created: "",
-            //     body: "",
-            //     user_id: "",
-            //     completed: false,
-            // },
             taskToEdit: {
                 taskname: "",
                 priority: "",
@@ -219,17 +210,18 @@ class TaskContainer extends Component {
     }
 
     render() {
-        const flexStyle = {
-            "display": "flex",
-            "justifyContent": "space-between",
-            "border": "1px solid black",
-            "flexDirection": "row",
-            // "flexWrap": "wrap",
-        }
+        // const flexStyle = {
+        //     // "display": "flex",
+        //     // "justifyContent": "space-between",
+        //     // "border": "1px solid black",
+        //     // "flexDirection": "row",
+        //     // "flexWrap": "wrap",
+        // }
         return (
             <main>
                 <div><TaskTimer /></div>
-                <div style={flexStyle}>
+                <div>
+                    <h1>Tasks:</h1>
                     <TaskList taskList={this.state.tasks} displayEditModal={this.displayEditModal} deleteTask={this.deleteTask} />
                     <CreateTask createTask={this.addTask} />
                     {this.state.showEditModal === true ?

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Form, Input, TextArea, Button } from 'semantic-ui-react'
 
 class CreateTask extends Component {
     constructor(props) {
@@ -58,37 +59,62 @@ class CreateTask extends Component {
     }
     render() {
         const formStyle = {
-            minWidth: "300px",
-            display: "flex",
-            flexDirection: "column"
+        paddingInlineStart: "40px",
+        paddingInlineEnd: "40px"
         }
         return (
-            <div >
-                <h1>New Task</h1>
-                <form onSubmit={this.handleNewSubmit} style={formStyle}>
-                    <label>
-                        Task Name:
-            <input type='text' name='taskname' value={this.state.taskname} placeholder="Taskname" onChange={this.handleChange} />
-                    </label>
+<form class="ui form" onSubmit={this.handleNewSubmit} style={formStyle}>
+<h1>Add a Task</h1>
+  <div class="equal width fields">
+    <div class="field">
+      <label for="form-subcomponent-shorthand-input-task-name"></label>
+      <div className="ui fluid input">
+        <input
+          type="text"
+          id="form-subcomponent-shorthand-input-task-name"
+          placeholder='Task name'
+          name='taskname' 
+          value={this.state.taskname}  
+          onChange={this.handleChange}
+        />
+      </div>
+    </div>
+    <div className="field">
+      <label for="form-subcomponent-shorthand-input-priority"></label>
+      <div class="ui fluid input">
+        <input
+          type="text"
+          id="form-subcomponent-shorthand-input-priority"
+          placeholder='Priority'
+          name='priority' 
+          value={this.state.priority}  
+          onChange={this.handleChange}
+        />
+      </div>
+    </div>
+    <div class="field">
+      <label for="form-subcomponent-shorthand-input-description"></label>
+      <div className="ui fluid input">
+        <input
+          type="text"
+          id="form-subcomponent-shorthand-input-description"
+          placeholder="Description"
+          name='body' 
+          value={this.state.body} 
+          placeholder="Description - 100 words or less" 
+          onChange={this.handleChange}
+        />
+      </div>
+    </div>
+    <button className="ui button" type="submit">Add Task</button>
+  </div>
+</form>
 
-                    <label>
-                        Priority:
-            <input type='text' name='priority' value={this.state.priority} placeholder="Priority" onChange={this.handleChange} />
-                    </label>
-                    <label>
-                        Description/Notes:
-            <input type='text' name='body' value={this.state.body} placeholder="100 words or less" onChange={this.handleChange} />
-                    </label>
-                    <label>
-                        Saved:
-            <input type='checkbox' name='checkbox' placeholder="password" />
-                    </label>
-                    <button type="submit">Add Task</button>
-                </form>
-            </div>
         )
     };
 }
 export default CreateTask;
+
+
 
 

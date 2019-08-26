@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Button } from 'semantic-ui-react'
 class TaskTimer extends Component {
     constructor(props) {
         super(props);
@@ -106,19 +107,22 @@ class TaskTimer extends Component {
         const digitStyle = {
             fontSize: "120pt",
             fontWeight: "200",
-            lineHeight: "140pt"
+            lineHeight: "140pt",
+        }
+        const bottomMargin = {
+            marginBottom: "1rem"
         }
         const minDisp = this.state.minute
         const secDisp = this.state.second
         const msDisp = this.state.ms
         return (
-            <div>
+            <div style={bottomMargin}>
                 <h3><span style={digitStyle}>{minDisp}:</span><span style={digitStyle}>{secDisp}</span>
                     <span><h1>with {this.state.restCount} rests</h1> </span></h3>
 
-                <button onClick={this.startTimer}>start</button>
-                <button onClick={this.stopTimer}>stop</button>
-                <button onClick={this.resetTimer}>reset</button>
+                <button className="mini ui green button" onClick={this.startTimer}>start</button>
+                <button className="mini ui red button" onClick={this.stopTimer}>stop</button>
+                <button className="mini ui yellow button" onClick={this.resetTimer}>reset</button>
             </div>);
     }
 }
