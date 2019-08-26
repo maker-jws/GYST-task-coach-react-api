@@ -11,12 +11,11 @@ class TaskContainer extends Component {
         this.state = {
             tasks: [],
             currentUser: {
-                user_id: 0,
                 username: "",
-                name: "",
-                email: "",
                 login: "",
                 logout: "",
+                is_active: false,
+                user_id: 0,
             },
             isLogged: false,
             taskToEdit: {
@@ -71,6 +70,13 @@ class TaskContainer extends Component {
                 showCreateModal: this.props.displayCreateModal
             })
         }
+        if (this.state.currentUser.user_id !== this.props.currentTaskUser.user_id) {
+            this.setState({
+                currentUser: {
+                    ...this.props.currentTaskUser
+                }
+            })
+        }
     }
     handleClockChange() {
         const timeNow = new Date().toLocaleString()
@@ -88,17 +94,6 @@ class TaskContainer extends Component {
             }
         })
     }
-    // getCurrentUser = async () => {
-    //     try {
-    //         console.log('getCurrentUser Fired')
-    //         //this.setState({
-    //         //this.props.currentUser //getting app.js
-    //         //islogged: !this.state.isLogged
-    //         // })
-    //     } catch (err) {
-    //         console.log(err)
-    //     }
-    // }
     getTasks = async () => {
         try {
             const responseGetTasks = await fetch('http://localhost:8000/task/v1/', {
@@ -223,7 +218,7 @@ class TaskContainer extends Component {
                 <div>
                     <h1>Tasks:</h1>
                     <TaskList taskList={this.state.tasks} displayEditModal={this.displayEditModal} deleteTask={this.deleteTask} />
-                    {this.state.showCreateModal === true ? <CreateTask currentUserId={this.state.currentUser} createTask={this.addTask} /> : null}
+                    {this.state.showCreateModal === true ? <CreateTask currentUserId={this.state.currentUser.user_id} createTask={this.addTask} /> : null}
                     {this.state.showEditModal === true ?
                         <EditTask
                             editTask={this.editTask}
