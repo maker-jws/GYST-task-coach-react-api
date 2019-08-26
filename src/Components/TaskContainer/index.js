@@ -11,12 +11,11 @@ class TaskContainer extends Component {
         this.state = {
             tasks: [],
             currentUser: {
-                user_id: 0,
                 username: "",
-                name: "",
-                email: "",
                 login: "",
                 logout: "",
+                is_active: false,
+                user_id: 0,
             },
             isLogged: false,
             taskToEdit: {
@@ -56,10 +55,9 @@ class TaskContainer extends Component {
                     'enctype': 'multipart/form-data',
                 }
             });
-
             const parsedResponse = await createTaskResponse.json();
             console.log(parsedResponse, 'parsed response', '<<<successful created event')
-
+            this.getTasks();
             return parsedResponse;
         }
         catch (err) {
@@ -70,6 +68,13 @@ class TaskContainer extends Component {
         if (this.state.showCreateModal !== this.props.displayCreateModal) {
             this.setState({
                 showCreateModal: this.props.displayCreateModal
+            })
+        }
+        if (this.state.currentUser.user_id !== this.props.currentTaskUser.user_id) {
+            this.setState({
+                currentUser: {
+                    ...this.props.currentTaskUser
+                }
             })
         }
     }
@@ -89,17 +94,6 @@ class TaskContainer extends Component {
             }
         })
     }
-    // getCurrentUser = async () => {
-    //     try {
-    //         console.log('getCurrentUser Fired')
-    //         //this.setState({
-    //         //this.props.currentUser //getting app.js
-    //         //islogged: !this.state.isLogged
-    //         // })
-    //     } catch (err) {
-    //         console.log(err)
-    //     }
-    // }
     getTasks = async () => {
         try {
             const responseGetTasks = await fetch('http://localhost:8000/task/v1/', {
@@ -127,20 +121,19 @@ class TaskContainer extends Component {
 
     displayEditModal = async (task) => {
         try {
-            console.log(task, "this is the task");
-            console.log(task.taskname)
+            // console.log(task, "this is the task");
+            // console.log(task.taskname)
             this.setState({
                 taskToEdit: task,
                 showEditModal: !this.state.showEditModal
             })
-            console.log(this.state.taskToEdit, 'this is after setting state');
+            // console.log(this.state.taskToEdit, 'this is after setting state');
         } catch (err) {
             console.log(err);
         }
 
     }
     editTask = async (form_data) => {
-
         try {
             console.log(form_data);
             this.setState(
@@ -211,7 +204,7 @@ class TaskContainer extends Component {
                 tasks: this.state.tasks.filter((task) => task.id !== id)
             })
 
-
+            return deleteTaskJson;
         } catch (err) {
             console.log(err);
             return err
@@ -221,7 +214,7 @@ class TaskContainer extends Component {
     render() {
         return (
             <main>
-                <div><TaskTimer /></div>
+                <div><TaskTimer componentDidMount={this.componentDidMount} /></div>
                 <div>
                     <h1>Tasks:</h1>
                     <TaskList taskList={this.state.tasks} displayEditModal={this.displayEditModal} deleteTask={this.deleteTask} />

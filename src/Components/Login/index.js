@@ -21,12 +21,12 @@ class Login extends Component {
     e.preventDefault();
     console.log('will pass props up to app.js to trigger displayRegister')
     this.props.setNotRegistered();
-  }
+  };
   render() {
     return (
       <div className="Login-wrapper">
         <div className="Login-form">
-          <img className="Login-logo" width={168} height={168} src={logo_bk} />
+          <img className="Login-logo" width={168} height={168} src={logo_bk} alt="GYST Logo" />
           <form onSubmit={this.handleLoginSubmit}>
             <label className="Login-label">
               Username:{" "}
@@ -46,6 +46,6 @@ class Login extends Component {
         </div>
       </div>
     );
-  }
-}
+  };
+};
 export default Login;

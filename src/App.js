@@ -15,23 +15,27 @@ class App extends Component {
         username: "",
         login: "",
         logout: "",
-        is_active: false
+        is_active: false,
+        user_id: 0,
       },
       showRegister: false,
       showLogin: false,
       showAddTask: true,
-      notRegistered: false,
+      notRegistered: false
     };
   }
+
   headerAddTask = () => {
     this.setState({
-      showAddTask: !(this.state.showAddTask)
-    })
-    console.log('task button pressed>>>effect:', this.state.showAddTask);
-  }
+      showAddTask: !this.state.showAddTask
+    });
+    console.log("task button pressed>>>effect:", this.state.showAddTask);
+  };
+
   handleChange = e => {
     this.setState({ [e.currentTarget.name]: e.currentTarget.value });
   };
+
   handleLoginSubmit = async data => {
     try {
       console.log(JSON.stringify(data));
@@ -43,16 +47,17 @@ class App extends Component {
           "Content-Type": "application/json"
         }
       });
-
-      const parsedLogin = await login.json();
+      //need a route to get the user in the post with a then?
+      const parsedLogin = await login.json(); //this returns data with user ID
       console.log(parsedLogin, " < login response");
       if (parsedLogin.status.message === "Success") {
         console.log("logged in");
         this.setState({
           currentUser: {
-            username: data.username,
+            username: parsedLogin.data.username,
             login: new Date().toLocaleString(),
-            is_active: true
+            is_active: true,
+            user_id: parsedLogin.data.id
           },
           notRegistered: false
         });
@@ -62,7 +67,6 @@ class App extends Component {
     }
   };
   handleRegisterSubmit = async data => {
-
     try {
       console.log(data);
       const register = await fetch("http://localhost:8000/user/register", {
@@ -78,13 +82,15 @@ class App extends Component {
       console.log(parsedRegister, " response from register");
       if (parsedRegister.status.message === "Success") {
         console.log("logged in");
-        console.log(data);
+        console.log(parsedRegister); // this is what comes back from the server
         this.setState({
           currentUser: {
-            username: data.username,
+            username: parsedRegister.data.username,
             login: new Date().toLocaleString(),
-            is_active: true
-          }
+            is_active: true,
+            user_id: parsedRegister.data.id
+          },
+          notRegistered: false
         });
         console.log(this.state.currentUser);
         // this.props.history.push("/employees");
@@ -96,11 +102,11 @@ class App extends Component {
   setNotRegistered = () => {
     this.setState({
       notRegistered: true
-    })
-  }
+    });
+  };
   // handleLogoutClick = async (data) => {
-  //   //posting to db : username and logout time 
-  //   //store something in data variables 
+  //   //posting to db : username and logout time
+  //   //store something in data variables
   //   try {
   //     console.log(JSON.stringify(data));
   //     const logout = await fetch("http://localhost:8000/user/logout", {
@@ -116,7 +122,7 @@ class App extends Component {
   //     console.log(parsedLogout, " < logout response");
   //     if (parsedLogout.status.message === "Success") {
   //       console.log("logged out");
-  //       //after logout successful from server, will reset state 
+  //       //after logout successful from server, will reset state
   //       this.setState({
   //         currentUser: {
   //           username: "data.username",
@@ -132,13 +138,26 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Header handleLogoutSubmit={this.handleLogoutClick} handleAddTaskClick={this.headerAddTask} />
+        <Header
+          handleLogoutSubmit={this.handleLogoutClick}
+          handleAddTaskClick={this.headerAddTask}
+          {...this.state}
+        />
         {this.state.currentUser.username ? (
-          <TaskContainer displayCreateModal={!this.state.showAddTask} />) : (
-            <div>
-              {this.state.notRegistered ? <Register registerSubmit={this.handleRegisterSubmit} /> : <Login setNotRegistered={this.setNotRegistered} handleLoginSubmit={this.handleLoginSubmit} />}
-            </div>
-          )}
+          <TaskContainer displayCreateModal={!this.state.showAddTask} />
+        ) : (
+          <div>
+            {this.state.notRegistered ? (
+              <Register registerSubmit={this.handleRegisterSubmit} />
+            ) : (
+              <Login
+                setNotRegistered={this.setNotRegistered}
+                handleLoginSubmit={this.handleLoginSubmit}
+              />
+            )}
+          </div>
+        )}
+
       </div>
     );
   }
