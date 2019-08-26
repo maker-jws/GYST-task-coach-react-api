@@ -18,7 +18,7 @@
 main{
   height: 100%;
 
-
+}
 nav {
   background-color: white;
 }
@@ -42,6 +42,8 @@ ul {
   padding-inline-start: 10%;
 }
 .Login-wrapper {
+  display: flex;
+  flex-direction: column;
   background-color: rgb(206, 206, 206);
   padding: .3rem;
   max-width: 35rem;
@@ -58,6 +60,8 @@ ul {
 }
 
 .Login-form {
+  display: flex;
+  flex-direction: column;
   margin: .1rem;
   min-height: 33rem;
   padding: 1rem;
@@ -97,6 +101,8 @@ ul {
 }
 
 .Register-wrapper {
+  display: flex;
+  flex-direction: column;
   background-color: rgb(206, 206, 206);
   padding: .3rem;
   max-width: 35rem;

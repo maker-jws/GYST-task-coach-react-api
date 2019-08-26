@@ -17,12 +17,10 @@ class Register extends Component {
     handleChange = e => {
         // console.log(this.state)
         this.setState({ [e.currentTarget.name]: e.currentTarget.value });
-
-  };   
-  render() {
+    };
+    render() {
         return (
             <div className="Register-wrapper">
-
                 <div className="Register-form">
                     <Form onSubmit={this.handleRegSubmit} id="main-form">
                         <div className="Register-masthead">
@@ -56,6 +54,7 @@ class Register extends Component {
                     </Form>
                 </div>
             </div>
-  }
+        )
+    }
 }
 export default Register;
