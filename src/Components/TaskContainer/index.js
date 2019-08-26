@@ -225,7 +225,7 @@ class TaskContainer extends Component {
                 <div>
                     <h1>Tasks:</h1>
                     <TaskList taskList={this.state.tasks} displayEditModal={this.displayEditModal} deleteTask={this.deleteTask} />
-                    {this.state.showCreateModal === true ? <CreateTask currentUserId={this.state.currentUser} createTask={this.addTask} /> : null}
+                    {this.state.showCreateModal === true ? <CreateTask currentUserId={this.state.currentUser.user_id} createTask={this.addTask} /> : null}
                     {this.state.showEditModal === true ?
                         <EditTask
                             editTask={this.editTask}

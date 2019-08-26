@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { thisExpression } from '@babel/types';
-import { Form, Input, TextArea, Button } from 'semantic-ui-react'
+import { Form, Input, TextArea, Button, Select } from 'semantic-ui-react'
 
 
 class EditTask extends Component {
@@ -55,11 +55,15 @@ class EditTask extends Component {
         paddingInlineStart: "40px",
         paddingInlineEnd: "40px"
         }
+    const radio = {
+        display: "flex",
+        flexDirection: "row", 
+        }
         return (
-<form class="ui form" onSubmit={this.handleNewEdit} style={editStyle}>
+<form className="ui form" onSubmit={this.handleNewEdit} style={editStyle}>
 <h1>Edit Task</h1>
-  <div class="equal width fields">
-    <div class="field">
+  <div className="equal width fields">
+    <div className="field">
       <label for="form-subcomponent-shorthand-input-task-name"></label>
       <div className="ui fluid input">
         <input
@@ -68,19 +72,6 @@ class EditTask extends Component {
           placeholder={this.state.taskname}
           name='taskname' 
           value={this.state.taskname}  
-          onChange={this.handleChange}
-        />
-      </div>
-    </div>
-    <div className="field">
-      <label for="form-subcomponent-shorthand-input-priority"></label>
-      <div class="ui fluid input">
-        <input
-          type="text"
-          id="form-subcomponent-shorthand-input-priority"
-          placeholder={this.state.priority}
-          name='priority' 
-          value={this.state.priority}  
           onChange={this.handleChange}
         />
       </div>
@@ -94,19 +85,60 @@ class EditTask extends Component {
           placeholder={this.state.body}
           name='body' 
           value={this.state.body} 
-          placeholder="Description - 100 words or less" 
           onChange={this.handleChange}
         />
       </div>
     </div>
+        <div class="grouped fields" style={radio} onChange={this.handleChange}>
+        <label >Priority</label>
+        <div class="field">
+          <label>
+            <input type="radio" name="htmlRadios" value={this.state.priority} placeholder={this.state.priority}/>
+            High
+          </label> 
+        </div>
+        <div class="field">
+          <label>
+            <input type="radio" name="htmlRadios" value={this.state.priority} placeholder={this.state.priority}/>
+            Medium
+          </label>
+        </div> 
+        <div class="field">
+          <label>
+            <input type="radio" name="htmlRadios" value={this.state.priority} placeholder={this.state.priority}/>
+            Low
+          </label>
+        </div> 
+    </div>
     <button className="ui button" type="submit">Edit Task</button>
   </div>
+
 </form>
 
 
         )
     };
 }
+
+
+
+
+
+// <div className="field">
+//       <label for="form-subcomponent-shorthand-input-priority"></label>
+//       <div class="ui fluid input">
+//         <input
+//           type="text"
+//           id="form-subcomponent-shorthand-input-priority"
+//           placeholder={this.state.priority}
+//           name='priority' 
+//           value={this.state.priority}  
+//           onChange={this.handleChange}
+//         />
+//       </div>
+//     </div>
+
+
 
 
 

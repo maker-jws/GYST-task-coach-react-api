@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Input, TextArea, Button } from 'semantic-ui-react'
+// import { Form, Input, TextArea, Button } from 'semantic-ui-react'
 
 class CreateTask extends Component {
     constructor(props) {
@@ -10,7 +10,7 @@ class CreateTask extends Component {
             saved: false,
             created: "",
             body: "",
-            user_id: 1,
+            user_id: this.props.currentUserId,
             completed: false,
         }
     }
