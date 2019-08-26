@@ -2,10 +2,9 @@ import React, { Component } from "react";
 class Header extends Component {
   constructor(props) {
     super(props);
-  const headerStyle = {
- 
+  }
   handleAddTaskClick = () => {
-    this.props.handleAddTaskClick()
+    this.props.handleAddTaskClick();
   }
   render() {
     return (<div className="ui inverted segment">

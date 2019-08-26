@@ -56,10 +56,9 @@ class TaskContainer extends Component {
                     'enctype': 'multipart/form-data',
                 }
             });
-
             const parsedResponse = await createTaskResponse.json();
             console.log(parsedResponse, 'parsed response', '<<<successful created event')
-
+            this.getTasks();
             return parsedResponse;
         }
         catch (err) {
@@ -127,20 +126,19 @@ class TaskContainer extends Component {
 
     displayEditModal = async (task) => {
         try {
-            console.log(task, "this is the task");
-            console.log(task.taskname)
+            // console.log(task, "this is the task");
+            // console.log(task.taskname)
             this.setState({
                 taskToEdit: task,
                 showEditModal: !this.state.showEditModal
             })
-            console.log(this.state.taskToEdit, 'this is after setting state');
+            // console.log(this.state.taskToEdit, 'this is after setting state');
         } catch (err) {
             console.log(err);
         }
 
     }
     editTask = async (form_data) => {
-
         try {
             console.log(form_data);
             this.setState(
@@ -211,7 +209,7 @@ class TaskContainer extends Component {
                 tasks: this.state.tasks.filter((task) => task.id !== id)
             })
 
-
+            return deleteTaskJson;
         } catch (err) {
             console.log(err);
             return err
@@ -221,7 +219,7 @@ class TaskContainer extends Component {
     render() {
         return (
             <main>
-                <div><TaskTimer /></div>
+                <div><TaskTimer componentDidMount={this.componentDidMount} /></div>
                 <div>
                     <h1>Tasks:</h1>
                     <TaskList taskList={this.state.tasks} displayEditModal={this.displayEditModal} deleteTask={this.deleteTask} />

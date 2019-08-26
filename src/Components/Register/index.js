@@ -13,7 +13,6 @@ class Register extends Component {
     handleRegSubmit = (e) => {
         e.preventDefault();
         return this.props.registerSubmit(this.state)
-
     }
     handleChange = e => {
         // console.log(this.state)
@@ -27,7 +26,7 @@ class Register extends Component {
                 <div className="Register-form">
                     <Form onSubmit={this.handleRegSubmit} id="main-form">
                         <div className="Register-masthead">
-                            <img className="Register-logo" src={logo} width={96} height={96} />
+                            <img className="Register-logo" src={logo} width={96} height={96} alt="GYST Logo" />
                             <h5><label>Ready to...</label><br /><em>Get Your _________ Together?</em></h5>
                         </div>
 

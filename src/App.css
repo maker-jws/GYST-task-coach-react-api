@@ -15,13 +15,12 @@
 }*/
 
 main{
-  height: 90vh;
+  height: 100%;
 }
 
 nav{
   background-color: white;
 }
-
 
 form{
   display: flex;
@@ -38,17 +37,17 @@ button{
   height: 32px;
 }
 
-/li>p{
+li>p{
   margin: 0 1rem;
   padding-top: 1rem;
 }
+*/
 
 ul {
   padding-inline-end: 10%;
   padding-inline-start: 10%;
 }
   
-
 .Login-wrapper{
   background-color: rgb(206, 206, 206);
   padding: .3rem;
