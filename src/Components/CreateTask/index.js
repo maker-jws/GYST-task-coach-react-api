@@ -1,18 +1,18 @@
 
 import React, { Component } from 'react';
 class CreateTask extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            taskname: "",
-            priority: "",
-            saved: false,
-            created: "",
-            body: "",
-            user_id: this.props.currentUserId,
-            completed: false,
-        }
+  constructor(props) {
+    super(props);
+    this.state = {
+      taskname: "",
+      priority: "",
+      saved: false,
+      created: "",
+      body: "",
+      user_id: this.props.currentUserId,
+      completed: false,
     }
+  }
 
   handleChange = e => {
     this.setState({ [e.target.name]: e.target.value });
@@ -115,7 +115,7 @@ class CreateTask extends Component {
           </button>
         </div>
       </form>
-    );
-  }
+    )
+  };
 }
 export default CreateTask;

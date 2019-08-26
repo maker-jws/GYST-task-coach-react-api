@@ -31,35 +31,99 @@ class TaskList extends Component {
       return zeroPriorityStyle
     }
   }
+  // setPriorityPosition = (task) => {
+  //
+  // }
+
   render() {
     let taskCount = 0
-
-
-    const displayTaskList = this.props.taskList.map((task) => {
-      taskCount++
-      return (
-        <div className="ui inverted segment" key={taskCount} style={this.setPriorityStyle(task)}>
-          <div role="list" className="ui divided inverted relaxed list">
-            <div role="listitem" className="item">
-              <div className="content">
-                <div className="header">{task.taskname}</div>
-                Priority: {task.priority}
-                <div>
-                  Description: {task.body}
-                </div> <br />
-                <div>
-                  <p><button className="mini ui red button" onClick={this.props.deleteTask.bind(null, task.id)}>Del</button>
-                    <button className="mini ui button" onClick={this.props.displayEditModal.bind(null, task)}>Edit</button></p>
+    const displayLowPriorityTasks = this.props.taskList.map((task) => {
+      if (task.priority === "low") {
+        taskCount++
+        return (
+          <div className="ui inverted segment" key={taskCount} style={this.setPriorityStyle(task)}>
+            <div role="list" className="ui divided inverted relaxed list">
+              <div role="listitem" className="item">
+                <div className="content">
+                  <div className="header">{task.taskname}</div>
+                  Priority: {task.priority}
+                  <div>
+                    Description: {task.body}
+                  </div> <br />
+                  <div>
+                    <p><button className="mini ui red button" onClick={this.props.deleteTask.bind(null, task.id)}>Del</button>
+                      <button className="mini ui button" onClick={this.props.displayEditModal.bind(null, task)}>Edit</button></p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      )
+        )
+      }
+    })
+    const displayMediumPriorityTasks = this.props.taskList.map((task) => {
+      taskCount++
+      if (task.priority === "medium") {
+        return (
+          <div className="ui inverted segment" key={taskCount} style={this.setPriorityStyle(task)}>
+            <div role="list" className="ui divided inverted relaxed list">
+              <div role="listitem" className="item">
+                <div className="content">
+                  <div className="header">{task.taskname}</div>
+                  Priority: {task.priority}
+                  <div>
+                    Description: {task.body}
+                  </div> <br />
+                  <div>
+                    <p><button className="mini ui red button" onClick={this.props.deleteTask.bind(null, task.id)}>Del</button>
+                      <button className="mini ui button" onClick={this.props.displayEditModal.bind(null, task)}>Edit</button></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )
+      }
+    })
+    const displayHighPriorityTasks = this.props.taskList.map((task) => {
+      taskCount++
+      if (task.priority === "high") {
+        return (
+          <div className="ui inverted segment" key={taskCount} style={this.setPriorityStyle(task)}>
+            <div role="list" className="ui divided inverted relaxed list">
+              <div role="listitem" className="item">
+                <div className="content">
+                  <div className="header">{task.taskname}</div>
+                  Priority: {task.priority}
+                  <div>
+                    Description: {task.body}
+                  </div> <br />
+                  <div>
+                    <p><button className="mini ui red button" onClick={this.props.deleteTask.bind(null, task.id)}>Del</button>
+                      <button className="mini ui button" onClick={this.props.displayEditModal.bind(null, task)}>Edit</button></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )
+      }
     })
 
     return (
-      <ul> {displayTaskList} </ul>
+
+      <div className="TaskList-wrapper">
+        <div className="TaskList-col">
+          {displayHighPriorityTasks}
+        </div>
+        <div className="TaskList-col">
+          {displayMediumPriorityTasks}
+        </div>
+        <div className="TaskList-col">
+          {displayLowPriorityTasks}
+        </div>
+
+      </div>
     )
   }
 }

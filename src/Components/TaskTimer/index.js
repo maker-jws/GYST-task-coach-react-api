@@ -86,8 +86,8 @@ class TaskTimer extends Component {
     resetTimer() {
         clearInterval(this.updateClock);
         this.setState({
-            minute: 25,
-            second: "00",
+            minute: "00",
+            second: "15",
             ms: "00",
             interval: 12
         })
@@ -109,7 +109,7 @@ class TaskTimer extends Component {
                     <span><h1>with {this.state.restCount} rests</h1> </span></h3>
                 <button className="mini ui green button" onClick={this.startTimer}>start</button>
                 <button className="mini ui red button" onClick={this.stopTimer}>stop</button>
-                <button className="mini ui yellow button" onClick={this.resetTimer}>reset</button>
+                <button className="mini ui button yellow" id="TaskTimer-reset" onClick={this.resetTimer}>reset</button>
             </div>);
     }
 }
