@@ -20,7 +20,6 @@ class TaskList extends Component {
     const zeroPriorityStyle = {
       border: "lightblue solid 1px"
     }
-
     if (task.priority === "high") {
       return highPriorityStyle
     } else if (task.priority === "medium") {
@@ -31,9 +30,6 @@ class TaskList extends Component {
       return zeroPriorityStyle
     }
   }
-  // setPriorityPosition = (task) => {
-  //
-  // }
 
   render() {
     let taskCount = 0
