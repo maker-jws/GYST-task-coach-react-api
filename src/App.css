@@ -14,7 +14,6 @@
   background-color: #E0E0E0;
 }*/
 
-
 main{
   height: auto;
 
@@ -27,20 +26,11 @@ button {
   margin: 0 auto;
 }
 
-/*li>button{
-  width: 64px;
-  height: 32px;
-}
-
-li>p{
-  margin: 0 1rem;
-  padding-top: 1rem;
-*/
-
 ul {
   padding-inline-end: 10%;
   padding-inline-start: 10%;
 }
+
 .Login-wrapper {
   display: flex;
   flex-direction: column;
