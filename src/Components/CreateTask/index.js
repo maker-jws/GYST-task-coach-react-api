@@ -9,7 +9,7 @@ class CreateTask extends Component {
             saved: false,
             created: "",
             body: "",
-            user_id: 1,
+            user_id: 1, ////pass in this.props.currentUserId
             completed: false,
         }
     }
@@ -39,7 +39,7 @@ class CreateTask extends Component {
                 saved: false,
                 created: "",
                 body: "",
-                user_id: 1,
+                user_id: 1,  //pass in this.props.currentUserId
                 completed: false,
             }
         })
