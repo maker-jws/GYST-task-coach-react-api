@@ -16,7 +16,7 @@ class App extends Component {
         login: "",
         logout: "",
         is_active: false,
-        user_id: 0,
+        user_id: 0
       },
       showRegister: false,
       showLogin: false,
@@ -144,7 +144,10 @@ class App extends Component {
           {...this.state}
         />
         {this.state.currentUser.username ? (
-          <TaskContainer displayCreateModal={!this.state.showAddTask} />
+          <TaskContainer
+            displayCreateModal={!this.state.showAddTask}
+            currentTaskUser={this.state.currentUser}
+          />
         ) : (
           <div>
             {this.state.notRegistered ? (
@@ -157,7 +160,6 @@ class App extends Component {
             )}
           </div>
         )}
-
       </div>
     );
   }
