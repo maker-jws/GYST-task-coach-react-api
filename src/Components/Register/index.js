@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Form } from "semantic-ui-react";
-import logo from '../../img/logo_org.png'
+import logo from "../../img/logo_org.png";
 class Register extends Component {
     constructor() {
         super();
@@ -9,17 +9,17 @@ class Register extends Component {
             email: "",
             password: ""
         };
-    }
-    handleRegSubmit = (e) => {
+    };
+    handleRegSubmit = e => {
         e.preventDefault();
         return this.props.registerSubmit(this.state)
-    }
+    };
     handleChange = e => {
         // console.log(this.state)
         this.setState({ [e.currentTarget.name]: e.currentTarget.value });
-    };
 
-    render() {
+  };   
+  render() {
         return (
             <div className="Register-wrapper">
 
@@ -53,10 +53,9 @@ class Register extends Component {
                         />
                         <button type="Submit" className="Register-btn">
                             Register</button>
-                    </Form></div>
+                    </Form>
+                </div>
             </div>
-
-        );
-    }
+  }
 }
 export default Register;

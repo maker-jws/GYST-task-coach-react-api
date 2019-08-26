@@ -14,21 +14,16 @@
   background-color: #E0E0E0;
 }*/
 
+
 main{
   height: 100%;
-}
 
-nav{
+
+nav {
   background-color: white;
 }
 
-form{
-  display: flex;
-  flex-direction: column;
-  /* border: 1px solid rgba(0, 0, 0, 0.1); */
-}
-
-button{
+button {
   margin: 0 auto;
 }
 
@@ -40,15 +35,13 @@ button{
 li>p{
   margin: 0 1rem;
   padding-top: 1rem;
-}
 */
 
 ul {
   padding-inline-end: 10%;
   padding-inline-start: 10%;
 }
-  
-.Login-wrapper{
+.Login-wrapper {
   background-color: rgb(206, 206, 206);
   padding: .3rem;
   max-width: 35rem;
@@ -57,12 +50,14 @@ ul {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: .3rem .3rem;
 }
-.Login-label{
+
+.Login-label {
   font-weight: bold;
   font-size: 12pt;
   margin-top: 1rem;
 }
-.Login-form{
+
+.Login-form {
   margin: .1rem;
   min-height: 33rem;
   padding: 1rem;
@@ -70,15 +65,17 @@ ul {
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
   border-radius: .3rem .3rem;
 }
-.Login-input{
-  margin: 1.1rem 1rem ;
+
+.Login-input {
+  margin: 1.1rem 1rem;
   line-height: 24pt;
-  padding: 0 1rem; 
+  padding: 0 1rem;
   background-color: rgb(184, 184, 184);
   border: none;
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
 }
-.Login-btn{
+
+.Login-btn {
   display: inline-block;
   border: none;
   padding: 1rem 2rem;
@@ -93,11 +90,13 @@ ul {
   text-align: center;
   transition: background 250ms ease-in-out,
 }
-.Login-btn:hover{
+
+.Login-btn:hover {
   background: #3079d1;
   transition: background 250ms ease-in-out,
 }
-.Register-wrapper{
+
+.Register-wrapper {
   background-color: rgb(206, 206, 206);
   padding: .3rem;
   max-width: 35rem;
@@ -106,28 +105,33 @@ ul {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: .3rem .3rem;
 }
-.Register-masthead{
+
+.Register-masthead {
   padding: 0;
   margin: 0;
   margin-top: .6rem;
 }
-.Register-logo{
+
+.Register-logo {
   border: 1px solid rgba(0, 0, 0, 0.10);
   border-radius: 20% 20% 0% 20%;
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
   padding: .15rem;
 }
-.Register-masthead>h5{
+
+.Register-masthead>h5 {
   padding: 0;
   margin: 1rem 0 2rem 0;
   line-height: 18pt;
 }
-.Register-label{
+
+.Register-label {
   font-weight: bold;
   font-size: 12pt;
   margin-top: .3rem;
 }
-.Register-form{
+
+.Register-form {
   margin: .1rem;
   min-height: 33rem;
   padding: 1rem;
@@ -135,20 +139,22 @@ ul {
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
   border-radius: .3rem .3rem;
 }
-.Register-input{
-  margin: 1.1rem 1.6rem ;
+
+.Register-input {
+  margin: 1.1rem 1.6rem;
   line-height: 24pt;
-  padding: 0 1rem; 
+  padding: 0 1rem;
   background-color: rgb(184, 184, 184);
   border: none;
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
 }
-.Register-btn{
+
+.Register-btn {
   display: inline-block;
   border: none;
   padding: 1rem 2rem;
   margin: 0;
-  
+
   text-decoration: none;
   background: #2a6ab8;
   color: #ffffff;
@@ -160,7 +166,8 @@ ul {
   transition: background 250ms ease-in-out;
   margin-top: 1rem;
 }
-.Register-btn:hover{
+
+.Register-btn:hover {
   background: #3079d1;
   transition: background 250ms ease-in-out;
 }
