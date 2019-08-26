@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Button } from 'semantic-ui-react'
 class TaskTimer extends Component {
     constructor(props) {
         super(props);
@@ -18,20 +17,16 @@ class TaskTimer extends Component {
     changeTaskClock() {
         this.setState({ ms: this.state.ms - 1 })
         if (this.state.ms < 0) {
-            // console.log('this is being activated MS')
             this.setState({
                 ms: 100,
                 second: this.state.second - 1,
             })
         } else if (this.state.second <= 0) {
-            // console.log('this is being activated SEC/MIN')
             this.setState({
                 second: 59,
                 minute: this.state.minute - 1,
             })
         } else if (this.state.minute < 0) {
-            // console.log('this is being activated TIMEOUT')
-            //initate taskcontainer state tasks shuffle
             clearInterval(this.updateClock);
             this.restTimer();
         }
@@ -39,7 +34,6 @@ class TaskTimer extends Component {
     startTimer() {
         this.updateClock = setInterval(() => {
             this.changeTaskClock();
-            // if (this.state.ms === 0) { console.log(this.state) } //- This is working 
         }, this.state.interval);
         console.log(this.state.second)
     }
@@ -63,7 +57,6 @@ class TaskTimer extends Component {
                 second: currentVals[1],
                 ms: currentVals[2],
             })
-            this.componentDidMount();
         }
         this.setState({
             isPaused: !this.state.isPaused
@@ -110,12 +103,10 @@ class TaskTimer extends Component {
         }
         const minDisp = this.state.minute
         const secDisp = this.state.second
-        const msDisp = this.state.ms
         return (
             <div style={bottomMargin}>
                 <h3><span style={digitStyle}>{minDisp}:</span><span style={digitStyle}>{secDisp}</span>
                     <span><h1>with {this.state.restCount} rests</h1> </span></h3>
-
                 <button className="mini ui green button" onClick={this.startTimer}>start</button>
                 <button className="mini ui red button" onClick={this.stopTimer}>stop</button>
                 <button className="mini ui yellow button" onClick={this.resetTimer}>reset</button>

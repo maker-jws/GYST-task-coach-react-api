@@ -3,7 +3,6 @@ class Header extends Component {
   constructor(props) {
     super(props);
   }
-
   handleAddTaskClick = () => {
     this.props.handleAddTaskClick();
   };

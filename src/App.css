@@ -14,19 +14,13 @@
   background-color: #E0E0E0;
 }*/
 
-main {
-  height: 90vh;
-}
+
+main{
+  height: 100%;
+
 
 nav {
   background-color: white;
-}
-
-
-form {
-  display: flex;
-  flex-direction: column;
-  /* border: 1px solid rgba(0, 0, 0, 0.1); */
 }
 
 button {
@@ -38,17 +32,15 @@ button {
   height: 32px;
 }
 
-/li>p{
+li>p{
   margin: 0 1rem;
   padding-top: 1rem;
-}*/
+*/
 
 ul {
   padding-inline-end: 10%;
   padding-inline-start: 10%;
 }
-
-
 .Login-wrapper {
   background-color: rgb(206, 206, 206);
   padding: .3rem;
