@@ -25,6 +25,8 @@ class TaskList extends Component {
         //     padding: "1rem",
         // }
         const displayTaskList = this.props.taskList.map((task) => {
+
+            
             taskCount++
             return (
                 <div className="ui inverted segment" key={taskCount}>
