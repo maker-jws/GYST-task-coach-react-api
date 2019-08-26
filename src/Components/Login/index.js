@@ -21,7 +21,7 @@ class Login extends Component {
     e.preventDefault();
     console.log('will pass props up to app.js to trigger displayRegister')
     this.props.setNotRegistered();
-  }
+  };
   render() {
     return (
       <div className="Login-wrapper">
@@ -46,6 +46,6 @@ class Login extends Component {
         </div>
       </div>
     );
-  }
-}
+  };
+};
 export default Login;

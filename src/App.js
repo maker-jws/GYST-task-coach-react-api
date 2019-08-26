@@ -15,7 +15,8 @@ class App extends Component {
         username: "",
         login: "",
         logout: "",
-        is_active: false
+        is_active: false,
+        user_id: 0,
       },
       showRegister: false,
       showLogin: false,
@@ -23,15 +24,18 @@ class App extends Component {
       notRegistered: false
     };
   }
+
   headerAddTask = () => {
     this.setState({
       showAddTask: !this.state.showAddTask
     });
     console.log("task button pressed>>>effect:", this.state.showAddTask);
   };
+
   handleChange = e => {
     this.setState({ [e.currentTarget.name]: e.currentTarget.value });
   };
+
   handleLoginSubmit = async data => {
     try {
       console.log(JSON.stringify(data));
@@ -43,16 +47,17 @@ class App extends Component {
           "Content-Type": "application/json"
         }
       });
-
-      const parsedLogin = await login.json();
+      //need a route to get the user in the post with a then?
+      const parsedLogin = await login.json(); //this returns data with user ID
       console.log(parsedLogin, " < login response");
       if (parsedLogin.status.message === "Success") {
         console.log("logged in");
         this.setState({
           currentUser: {
-            username: data.username,
+            username: parsedLogin.data.username,
             login: new Date().toLocaleString(),
-            is_active: true
+            is_active: true,
+            user_id: parsedLogin.data.id
           },
           notRegistered: false
         });
@@ -77,13 +82,15 @@ class App extends Component {
       console.log(parsedRegister, " response from register");
       if (parsedRegister.status.message === "Success") {
         console.log("logged in");
-        console.log(data);
+        console.log(parsedRegister); // this is what comes back from the server
         this.setState({
           currentUser: {
-            username: data.username,
+            username: parsedRegister.data.username,
             login: new Date().toLocaleString(),
-            is_active: true
-          }
+            is_active: true,
+            user_id: parsedRegister.data.id
+          },
+          notRegistered: false
         });
         console.log(this.state.currentUser);
         // this.props.history.push("/employees");
@@ -150,6 +157,7 @@ class App extends Component {
             )}
           </div>
         )}
+
       </div>
     );
   }

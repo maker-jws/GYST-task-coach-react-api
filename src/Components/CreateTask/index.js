@@ -9,7 +9,7 @@ class CreateTask extends Component {
       saved: false,
       created: "",
       body: "",
-      user_id: 1, ////pass in this.props.currentUserId
+      user_id: this.props.currentUserId,
       completed: false,
       isComplete: false,
     }
