@@ -18,10 +18,11 @@ class EditTask extends Component {
         }
     }
     handleChange = (e) => {
-        // console.log(e.target.value)
+        
         this.setState(
             { [e.target.name]: e.target.value }
         );
+        console.log(this.state.priority)
     }
     handleNewEdit = (e) => {
         e.preventDefault();
@@ -76,7 +77,7 @@ class EditTask extends Component {
         />
       </div>
     </div>
-    <div class="field">
+    <div className="field">
       <label for="form-subcomponent-shorthand-input-description"></label>
       <div className="ui fluid input">
         <input
@@ -89,23 +90,27 @@ class EditTask extends Component {
         />
       </div>
     </div>
-        <div class="grouped fields" style={radio} onChange={this.handleChange}>
-        <label >Priority</label>
-        <div class="field">
+        <div className="grouped fields" style={radio} onChange={this.handleChange}>
+        <label>Priority</label>
+        <div className="field">
           <label>
-            <input type="radio" name="htmlRadios" value={this.state.priority} placeholder={this.state.priority}/>
+            <input 
+                type="radio" 
+                name="priority" 
+                value="high" 
+                onChange={this.handleChange}/>
             High
           </label> 
         </div>
-        <div class="field">
+        <div className="field">
           <label>
-            <input type="radio" name="htmlRadios" value={this.state.priority} placeholder={this.state.priority}/>
+            <input type="radio" name="priority" value="medium" onChange={this.handleChange}/>
             Medium
           </label>
         </div> 
-        <div class="field">
+        <div className="field">
           <label>
-            <input type="radio" name="htmlRadios" value={this.state.priority} placeholder={this.state.priority}/>
+            <input type="radio" name="priority" value="low" onChange={this.handleChange}/>
             Low
           </label>
         </div> 
