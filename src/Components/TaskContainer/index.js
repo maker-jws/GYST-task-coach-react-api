@@ -10,7 +10,6 @@ class TaskContainer extends Component {
         super(props);
         this.state = {
             tasks: [],
-            showEditModal: false,
             currentUser: {
                 user_id: 0,
                 username: "",
@@ -32,6 +31,8 @@ class TaskContainer extends Component {
             },
             currentTime: "",
             taskDuration: 25,
+            showEditModal: false,
+            showCreateModal: false,
         }
     }
     componentDidMount() {
@@ -41,6 +42,9 @@ class TaskContainer extends Component {
             () => this.handleClockChange(),
             999
         );
+        this.setState({
+            showCreateModal: this.props.displayCreateModal
+        })
     }
     addTask = async (data) => {
         try {
@@ -62,8 +66,13 @@ class TaskContainer extends Component {
             console.log(err)
         }
     }
-    // Need to dicuss how we will display tasks / edit events/ 
-
+    componentDidUpdate() {
+        if (this.state.showCreateModal !== this.props.displayCreateModal) {
+            this.setState({
+                showCreateModal: this.props.displayCreateModal
+            })
+        }
+    }
     handleClockChange() {
         const timeNow = new Date().toLocaleString()
         // const timeMS = Date.parse(timeNow)
@@ -80,17 +89,17 @@ class TaskContainer extends Component {
             }
         })
     }
-    getCurrentUser = async () => {
-        try {
-            console.log('getCurrentUser Fired')
-            //this.setState({
-            //this.props.currentUser //getting app.js
-            //islogged: !this.state.isLogged
-            // })
-        } catch (err) {
-            console.log(err)
-        }
-    }
+    // getCurrentUser = async () => {
+    //     try {
+    //         console.log('getCurrentUser Fired')
+    //         //this.setState({
+    //         //this.props.currentUser //getting app.js
+    //         //islogged: !this.state.isLogged
+    //         // })
+    //     } catch (err) {
+    //         console.log(err)
+    //     }
+    // }
     getTasks = async () => {
         try {
             const responseGetTasks = await fetch('http://localhost:8000/task/v1/', {
@@ -210,20 +219,13 @@ class TaskContainer extends Component {
     }
 
     render() {
-        // const flexStyle = {
-        //     // "display": "flex",
-        //     // "justifyContent": "space-between",
-        //     // "border": "1px solid black",
-        //     // "flexDirection": "row",
-        //     // "flexWrap": "wrap",
-        // }
         return (
             <main>
                 <div><TaskTimer /></div>
                 <div>
                     <h1>Tasks:</h1>
                     <TaskList taskList={this.state.tasks} displayEditModal={this.displayEditModal} deleteTask={this.deleteTask} />
-                    <CreateTask createTask={this.addTask} />
+                    {this.state.showCreateModal === true ? <CreateTask currentUserId={this.state.currentUser} createTask={this.addTask} /> : null}
                     {this.state.showEditModal === true ?
                         <EditTask
                             editTask={this.editTask}

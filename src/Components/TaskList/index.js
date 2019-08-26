@@ -24,11 +24,8 @@ class TaskList extends Component {
         //     flexWrap: "wrap",
         //     padding: "1rem",
         // }
-
         const displayTaskList = this.props.taskList.map((task) => {
             taskCount++
-            // const taskListEntries = Object.entries(props.taskList);
-            // console.log(taskListEntries);
             return (
                 <div className="ui inverted segment" key={taskCount}>
                   <div role="list" class="ui divided inverted relaxed list">
@@ -51,18 +48,12 @@ class TaskList extends Component {
         })
 
         return (
-            <ul> {displayTaskList}</ul>
+            <ul> {displayTaskList} </ul>
         )
     }
 }
 export default TaskList;
-                // <li key={taskCount} >
-                //     <p>{task.taskname}</p>
-                //     <p><button className="mini ui red button" onClick={this.props.deleteTask.bind(null, task.id)}>Del</button>
-                //         <button className="mini ui button" onClick={this.props.displayEditModal.bind(null, task)}>Edit</button></p>
-                // </li>
 
-// semantic ui resource https://react.semantic-ui.com/elements/list/#variations-inverted
 
 
 

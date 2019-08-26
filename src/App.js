@@ -18,14 +18,20 @@ class App extends Component {
         is_active: false
       },
       showRegister: false,
-      showLogin: false
+      showLogin: false,
+      showAddTask: true,
+      notRegistered: false,
     };
   }
-
+  headerAddTask = () => {
+    this.setState({
+      showAddTask: !(this.state.showAddTask)
+    })
+    console.log('task button pressed>>>effect:', this.state.showAddTask);
+  }
   handleChange = e => {
     this.setState({ [e.currentTarget.name]: e.currentTarget.value });
   };
-
   handleLoginSubmit = async data => {
     try {
       console.log(JSON.stringify(data));
@@ -35,7 +41,6 @@ class App extends Component {
         body: JSON.stringify(data),
         headers: {
           "Content-Type": "application/json"
-          // 'enctype': 'multipart/form-data',
         }
       });
 
@@ -48,7 +53,8 @@ class App extends Component {
             username: data.username,
             login: new Date().toLocaleString(),
             is_active: true
-          }
+          },
+          notRegistered: false
         });
       }
     } catch (err) {
@@ -56,6 +62,7 @@ class App extends Component {
     }
   };
   handleRegisterSubmit = async data => {
+
     try {
       console.log(data);
       const register = await fetch("http://localhost:8000/user/register", {
@@ -86,25 +93,55 @@ class App extends Component {
       console.log(err);
     }
   };
+  setNotRegistered = () => {
+    this.setState({
+      notRegistered: true
+    })
+  }
+  // handleLogoutClick = async (data) => {
+  //   //posting to db : username and logout time 
+  //   //store something in data variables 
+  //   try {
+  //     console.log(JSON.stringify(data));
+  //     const logout = await fetch("http://localhost:8000/user/logout", {
+  //       method: "POST",
+  //       credentials: "include",
+  //       body: JSON.stringify(data),
+  //       headers: {
+  //         "Content-Type": "application/json"
+  //       }
+  //     });
 
+  //     const parsedLogout = await logout.json();
+  //     console.log(parsedLogout, " < logout response");
+  //     if (parsedLogout.status.message === "Success") {
+  //       console.log("logged out");
+  //       //after logout successful from server, will reset state 
+  //       this.setState({
+  //         currentUser: {
+  //           username: "data.username",
+  //           login: "",
+  //           is_active: false
+  //         }
+  //       });
+  //     }
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
   render() {
     return (
       <div className="App">
-        <Header />
-
+        <Header handleLogoutSubmit={this.handleLogoutClick} handleAddTaskClick={this.headerAddTask} />
         {this.state.currentUser.username ? (
-          <TaskContainer />
-        ) : (
-          <div>
-            <Login handleLoginSubmit={this.handleLoginSubmit} />
-            <Register registerSubmit={this.handleRegisterSubmit} />
-          </div>
-        )}
-
+          <TaskContainer displayCreateModal={!this.state.showAddTask} />) : (
+            <div>
+              {this.state.notRegistered ? <Register registerSubmit={this.handleRegisterSubmit} /> : <Login setNotRegistered={this.setNotRegistered} handleLoginSubmit={this.handleLoginSubmit} />}
+            </div>
+          )}
       </div>
     );
   }
 }
 
 export default App;
-

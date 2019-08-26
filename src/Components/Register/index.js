@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { Button, Form } from "semantic-ui-react";
+import { Form } from "semantic-ui-react";
+import logo from '../../img/logo_org.png'
 class Register extends Component {
     constructor() {
         super();
@@ -15,44 +16,47 @@ class Register extends Component {
 
     }
     handleChange = e => {
-        console.log(this.state)
+        // console.log(this.state)
         this.setState({ [e.currentTarget.name]: e.currentTarget.value });
     };
 
     render() {
         return (
-            <Form onSubmit={this.handleRegSubmit} id="main-form">
-                <label>
-                    Create Username:
-         <input
-                        type="text"
-                        name="username"
-                        id="username"
-                        onChange={this.handleChange}
-                    />
-                </label>
-                <label>
-                    Create Email:
-         <input
-                        type="email"
-                        name="email"
-                        id="email"
-                        onChange={this.handleChange}
-                    />
-                </label>
-                <label>
-                    Create Password:
-         <input
-                        type="password"
-                        name="password"
-                        id="password"
-                        onChange={this.handleChange}
-                    />
-                </label>
-                <button type="Submit" className="ui primary button" id="button">
-                    Register
-       </button>
-            </Form>
+            <div className="Register-wrapper">
+
+                <div className="Register-form">
+                    <Form onSubmit={this.handleRegSubmit} id="main-form">
+                        <div className="Register-masthead">
+                            <img className="Register-logo" src={logo} width={96} height={96} />
+                            <h5><label>Ready to...</label><br /><em>Get Your _________ Together?</em></h5>
+                        </div>
+
+                        <label className="Register-label">Create Username:</label>
+                        <input className="Register-input"
+                            type="text"
+                            name="username"
+                            id="username"
+                            onChange={this.handleChange}
+                        />
+                        <label className="Register-label">Create Email:</label>
+                        <input className="Register-input"
+                            type="email"
+                            name="email"
+                            id="email"
+                            onChange={this.handleChange}
+                        />
+                        <label className="Register-label">Create Password:</label>
+                        <input className="Register-input"
+                            type="password"
+                            name="password"
+                            id="password"
+                            onChange={this.handleChange}
+                        />
+                        <button type="Submit" className="Register-btn">
+                            Register</button>
+                    </Form></div>
+            </div>
+
         );
     }
 }
