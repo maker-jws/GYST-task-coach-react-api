@@ -20,15 +20,15 @@ class App extends Component {
       showRegister: false,
       showLogin: false,
       showAddTask: true,
-      notRegistered: false,
+      notRegistered: false
     };
   }
   headerAddTask = () => {
     this.setState({
-      showAddTask: !(this.state.showAddTask)
-    })
-    console.log('task button pressed>>>effect:', this.state.showAddTask);
-  }
+      showAddTask: !this.state.showAddTask
+    });
+    console.log("task button pressed>>>effect:", this.state.showAddTask);
+  };
   handleChange = e => {
     this.setState({ [e.currentTarget.name]: e.currentTarget.value });
   };
@@ -62,7 +62,6 @@ class App extends Component {
     }
   };
   handleRegisterSubmit = async data => {
-
     try {
       console.log(data);
       const register = await fetch("http://localhost:8000/user/register", {
@@ -96,11 +95,11 @@ class App extends Component {
   setNotRegistered = () => {
     this.setState({
       notRegistered: true
-    })
-  }
+    });
+  };
   // handleLogoutClick = async (data) => {
-  //   //posting to db : username and logout time 
-  //   //store something in data variables 
+  //   //posting to db : username and logout time
+  //   //store something in data variables
   //   try {
   //     console.log(JSON.stringify(data));
   //     const logout = await fetch("http://localhost:8000/user/logout", {
@@ -116,7 +115,7 @@ class App extends Component {
   //     console.log(parsedLogout, " < logout response");
   //     if (parsedLogout.status.message === "Success") {
   //       console.log("logged out");
-  //       //after logout successful from server, will reset state 
+  //       //after logout successful from server, will reset state
   //       this.setState({
   //         currentUser: {
   //           username: "data.username",
@@ -132,13 +131,25 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Header handleLogoutSubmit={this.handleLogoutClick} handleAddTaskClick={this.headerAddTask} />
+        <Header
+          handleLogoutSubmit={this.handleLogoutClick}
+          handleAddTaskClick={this.headerAddTask}
+          {...this.state}
+        />
         {this.state.currentUser.username ? (
-          <TaskContainer displayCreateModal={!this.state.showAddTask} />) : (
-            <div>
-              {this.state.notRegistered ? <Register registerSubmit={this.handleRegisterSubmit} /> : <Login setNotRegistered={this.setNotRegistered} handleLoginSubmit={this.handleLoginSubmit} />}
-            </div>
-          )}
+          <TaskContainer displayCreateModal={!this.state.showAddTask} />
+        ) : (
+          <div>
+            {this.state.notRegistered ? (
+              <Register registerSubmit={this.handleRegisterSubmit} />
+            ) : (
+              <Login
+                setNotRegistered={this.setNotRegistered}
+                handleLoginSubmit={this.handleLoginSubmit}
+              />
+            )}
+          </div>
+        )}
       </div>
     );
   }
