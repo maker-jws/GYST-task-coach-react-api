@@ -222,7 +222,7 @@ class TaskContainer extends Component {
         const flexStyle = {
             "display": "flex",
             "justifyContent": "space-between",
-            "border": "1px solid black",
+            // "border": "1px solid black",
             "flexDirection": "row",
             // "flexWrap": "wrap",
         }

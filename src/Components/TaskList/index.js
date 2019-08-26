@@ -19,7 +19,7 @@ class TaskList extends Component {
         const rowStyle = {
             display: "flex",
             flexDirection: "row",
-            border: "1px solid black",
+            // border: "1px solid black",
             flexWrap: "wrap",
             padding: "1rem",
         }
