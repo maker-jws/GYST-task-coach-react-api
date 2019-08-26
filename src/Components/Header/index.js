@@ -1,14 +1,9 @@
 import React, { Component } from "react";
-// import Login from '../Login/index'
-// import Register from '../Register/index'
-// import Profile from '../Profile/index'
-// import { Link } from 'react-router-dom'
-// import { Button, Form, Grid, Image, Message, Card, Icon } from 'semantic-ui-react';
 class Header extends Component {
   constructor(props) {
     super(props);
-
-  }
+  const headerStyle = {
+ 
   handleAddTaskClick = () => {
     this.props.handleAddTaskClick()
   }
@@ -28,6 +23,5 @@ class Header extends Component {
     </div>);
   }
 }
-
 export default Header;
 

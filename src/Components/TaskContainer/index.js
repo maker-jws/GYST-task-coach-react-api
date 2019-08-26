@@ -219,17 +219,11 @@ class TaskContainer extends Component {
     }
 
     render() {
-        const flexStyle = {
-            "display": "flex",
-            "justifyContent": "space-between",
-            // "border": "1px solid black",
-            "flexDirection": "row",
-            // "flexWrap": "wrap",
-        }
         return (
             <main>
                 <div><TaskTimer /></div>
-                <div style={flexStyle}>
+                <div>
+                    <h1>Tasks:</h1>
                     <TaskList taskList={this.state.tasks} displayEditModal={this.displayEditModal} deleteTask={this.deleteTask} />
                     {this.state.showCreateModal === true ? <CreateTask currentUserId={this.state.currentUser} createTask={this.addTask} /> : null}
                     {this.state.showEditModal === true ?
