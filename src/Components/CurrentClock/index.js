@@ -9,8 +9,7 @@ class CurrentClock extends Component {
 
     render() {
         return (<div>
-            <h1>This is the Task Clock</h1>
-            <h1>The time is {this.props.currentTime}.</h1>
+            <h3>The day is {this.props.currentTime}.</h3>
         </div>);
     }
 }
