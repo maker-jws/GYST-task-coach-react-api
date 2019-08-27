@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import CreateTask from "../CreateTask/index";
 import TaskList from "../TaskList/index";
 import EditTask from "../EditTask/index";
-import CurrentTime from "../CurrentClock/index";
+// import CurrentTime from "../CurrentClock/index";
 import TaskTimer from "../TaskTimer/index";
 
 class TaskContainer extends Component {
@@ -37,7 +37,6 @@ class TaskContainer extends Component {
   componentDidMount() {
     console.log("state did change");
     this.getTasks();
-    this.ClockUpdate = setInterval(() => this.handleClockChange(), 999);
     this.setState({
       showCreateModal: this.props.displayCreateModal
     });
@@ -80,13 +79,6 @@ class TaskContainer extends Component {
       });
     }
   }
-  handleClockChange() {
-    const timeNow = new Date().toLocaleString();
-    // const timeMS = Date.parse(timeNow)
-    this.setState({
-      currentTime: timeNow
-    });
-  }
   handleFormChange = e => {
     //will help us edit the state for modified tasks component
     this.setState({
@@ -120,7 +112,6 @@ class TaskContainer extends Component {
       console.log(err, "getTasks Error");
     }
   };
-
   displayEditModal = async task => {
     try {
       // console.log(task, "this is the task");
@@ -222,6 +213,7 @@ class TaskContainer extends Component {
             taskList={this.state.tasks}
             displayEditModal={this.displayEditModal}
             deleteTask={this.deleteTask}
+            {...this.state}
           />
           {this.state.showCreateModal === true ? (
             <CreateTask
@@ -237,9 +229,6 @@ class TaskContainer extends Component {
               taskToEdit={this.state.taskToEdit}
             />
           ) : null}
-        </div>
-        <div>
-          <CurrentTime currentTime={this.state.currentTime} />
         </div>
       </main>
     );

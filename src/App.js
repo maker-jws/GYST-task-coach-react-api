@@ -150,17 +150,17 @@ class App extends Component {
             handleAddTaskModal={this.headerAddTask}
           />
         ) : (
-          <div>
-            {this.state.notRegistered ? (
-              <Register registerSubmit={this.handleRegisterSubmit} />
-            ) : (
-              <Login
-                setNotRegistered={this.setNotRegistered}
-                handleLoginSubmit={this.handleLoginSubmit}
-              />
-            )}
-          </div>
-        )}
+            <div>
+              {this.state.notRegistered ? (
+                <Register registerSubmit={this.handleRegisterSubmit} />
+              ) : (
+                  <Login
+                    setNotRegistered={this.setNotRegistered}
+                    handleLoginSubmit={this.handleLoginSubmit}
+                  />
+                )}
+            </div>
+          )}
       </div>
     );
   }

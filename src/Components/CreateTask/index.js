@@ -1,5 +1,4 @@
-
-import React, { Component } from 'react';
+import React, { Component } from "react";
 class CreateTask extends Component {
   constructor(props) {
     super(props);
@@ -10,8 +9,8 @@ class CreateTask extends Component {
       created: "",
       body: "",
       user_id: this.props.currentUserId,
-      completed: false,
-    }
+      completed: false
+    };
   }
 
   handleChange = e => {
@@ -34,7 +33,7 @@ class CreateTask extends Component {
     }
     // this.props.createTask(data);
     // clearState
-    
+
     const newTaskCall = this.props.createTask(data);
     newTaskCall.then(data => {
       console.log(data, "new task data!");
@@ -61,12 +60,14 @@ class CreateTask extends Component {
     const formStyle = {
       paddingInlineStart: "40px",
       paddingInlineEnd: "40px"
+
     }
+
     const radio = {
-    display: "flex",
-    flexDirection: "row", 
-    }
-    return ( 
+      display: "flex",
+      flexDirection: "row"
+    };
+    return (
       <form
         className="ui form"
         onSubmit={this.handleNewSubmit}
@@ -87,7 +88,46 @@ class CreateTask extends Component {
               />
             </div>
           </div>
-
+          <div
+            className="grouped fields"
+            style={radio}
+            onChange={this.handleChange}
+          >
+            <label>Priority</label>
+            <div className="field">
+              <label>
+                <input
+                  type="radio"
+                  name="priority"
+                  value="high"
+                  onChange={this.handleChange}
+                />
+                High
+              </label>
+            </div>
+            <div className="field">
+              <label>
+                <input
+                  type="radio"
+                  name="priority"
+                  value="medium"
+                  onChange={this.handleChange}
+                />
+                Medium
+              </label>
+            </div>
+            <div className="field">
+              <label>
+                <input
+                  type="radio"
+                  name="priority"
+                  value="low"
+                  onChange={this.handleChange}
+                />
+                Low
+              </label>
+            </div>
+          </div>
 
           <div class="field">
             <label for="form-subcomponent-shorthand-input-description"></label>
@@ -102,12 +142,7 @@ class CreateTask extends Component {
                 onChange={this.handleChange}
               />
             </div>
-          </div>
-
-
-
-
-          
+          </div>          
           <div className="grouped fields" style={radio} onChange={this.handleChange}>
         <label>Priority</label>
         <div className="field">
@@ -133,15 +168,13 @@ class CreateTask extends Component {
           </label>
         </div> 
     </div>
-
-
           <button className="ui button" type="submit">
             Add Task
           </button>
         </div>
       </form>
-    )
-  };
+    );
+  }
 }
 
 export default CreateTask;
