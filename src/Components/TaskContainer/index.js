@@ -44,7 +44,7 @@ class TaskContainer extends Component {
   addTask = async data => {
     console.log(data, "<-- initial addTask data response");
     try {
-      const createTaskResponse = await fetch(process.env.REACT_APP_BACKEND_URL + "/task/v1/", {
+      const createTaskResponse = await fetch(process.env.REACT_APP_BACKEND_URL + "task/v1/", {
         method: "POST",
         credentials: "include",
         body: data,
@@ -132,7 +132,7 @@ class TaskContainer extends Component {
       console.log(this.state.taskToEdit);
 
       const getOneTask = await fetch(
-        process.env.REACT_APP_BACKEND_URL + "/task/v1/" + this.state.taskToEdit.id,
+        process.env.REACT_APP_BACKEND_URL + "task/v1/" + this.state.taskToEdit.id,
         {
           //insert id here
           method: "PUT",
