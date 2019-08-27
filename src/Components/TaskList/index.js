@@ -50,22 +50,11 @@ class TaskList extends Component {
                 <div className="content">
                   <div className="header">{task.taskname}</div>
                   Priority: {task.priority}
-                  <div>Description: {task.body}</div> <br />
+
+                <br />
                   <div>
-                    <p>
-                      <button
-                        className="mini ui red button"
-                        onClick={this.props.deleteTask.bind(null, task.id)}
-                      >
-                        Del
-                      </button>
-                      <button
-                        className="mini ui button"
-                        onClick={this.props.displayEditModal.bind(null, task)}
-                      >
-                        Edit
-                      </button>
-                    </p>
+                    <p><button className="mini ui red button" onClick={this.props.deleteTask.bind(null, task.id)}>Del</button>
+                      <button className="mini ui button" onClick={this.props.displayEditModal.bind(null, task)}>Edit</button></p>
                   </div>
                 </div>
               </div>
@@ -91,22 +80,11 @@ class TaskList extends Component {
                 <div className="content">
                   <div className="header">{task.taskname}</div>
                   Priority: {task.priority}
-                  <div>Description: {task.body}</div> <br />
+
+                   <br />
                   <div>
-                    <p>
-                      <button
-                        className="mini ui red button"
-                        onClick={this.props.deleteTask.bind(null, task.id)}
-                      >
-                        Del
-                      </button>
-                      <button
-                        className="mini ui button"
-                        onClick={this.props.displayEditModal.bind(null, task)}
-                      >
-                        Edit
-                      </button>
-                    </p>
+                    <p><button className="mini ui red button" onClick={this.props.deleteTask.bind(null, task.id)}>Del</button>
+                      <button className="mini ui button" onClick={this.props.displayEditModal.bind(null, task)}>Edit</button></p>
                   </div>
                 </div>
               </div>
@@ -132,22 +110,11 @@ class TaskList extends Component {
                 <div className="content">
                   <div className="header">{task.taskname}</div>
                   Priority: {task.priority}
-                  <div>Description: {task.body}</div> <br />
+
+                  <br />
                   <div>
-                    <p>
-                      <button
-                        className="mini ui red button"
-                        onClick={this.props.deleteTask.bind(null, task.id)}
-                      >
-                        Del
-                      </button>
-                      <button
-                        className="mini ui button"
-                        onClick={this.props.displayEditModal.bind(null, task)}
-                      >
-                        Edit
-                      </button>
-                    </p>
+                    <p><button className="mini ui red button" onClick={this.props.deleteTask.bind(null, task.id)}>Del</button>
+                      <button className="mini ui button" onClick={this.props.displayEditModal.bind(null, task)}>Edit</button></p>
                   </div>
                 </div>
               </div>
@@ -167,3 +134,4 @@ class TaskList extends Component {
   }
 }
 export default TaskList;
+

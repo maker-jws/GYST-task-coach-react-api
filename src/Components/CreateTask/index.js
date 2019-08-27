@@ -60,7 +60,9 @@ class CreateTask extends Component {
     const formStyle = {
       paddingInlineStart: "40px",
       paddingInlineEnd: "40px"
-    };
+
+    }
+
     const radio = {
       display: "flex",
       flexDirection: "row"
@@ -126,6 +128,7 @@ class CreateTask extends Component {
               </label>
             </div>
           </div>
+
           <div class="field">
             <label for="form-subcomponent-shorthand-input-description"></label>
             <div className="ui fluid input">
@@ -139,7 +142,32 @@ class CreateTask extends Component {
                 onChange={this.handleChange}
               />
             </div>
-          </div>
+          </div>          
+          <div className="grouped fields" style={radio} onChange={this.handleChange}>
+        <label>Priority</label>
+        <div className="field">
+          <label>
+            <input 
+                type="radio" 
+                name="priority" 
+                value="high" 
+                onChange={this.handleChange}/>
+            High
+          </label> 
+        </div>
+        <div className="field">
+          <label>
+            <input type="radio" name="priority" value="medium" onChange={this.handleChange}/>
+            Medium
+          </label>
+        </div> 
+        <div className="field">
+          <label>
+            <input type="radio" name="priority" value="low" onChange={this.handleChange}/>
+            Low
+          </label>
+        </div> 
+    </div>
           <button className="ui button" type="submit">
             Add Task
           </button>
@@ -148,4 +176,5 @@ class CreateTask extends Component {
     );
   }
 }
+
 export default CreateTask;
