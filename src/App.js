@@ -69,7 +69,7 @@ class App extends Component {
   handleRegisterSubmit = async data => {
     try {
       console.log(data);
-      const register = await fetch(process.env.REACT_APP_BACKEND_URL + 'user/register/', {
+      const register = await fetch(process.env.REACT_APP_BACKEND_URL + 'user/register', {
         method: "POST",
         credentials: "include",
         body: JSON.stringify(data),
