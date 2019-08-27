@@ -39,7 +39,7 @@ class App extends Component {
   handleLoginSubmit = async data => {
     try {
       console.log(JSON.stringify(data));
-      const login = await fetch(process.env.REACT_APP_BACKEND_URL + "user/login", {
+      const login = await fetch(process.env.REACT_APP_BACKEND_URL + "/user/login", {
         method: "POST",
         credentials: "include",
         body: JSON.stringify(data),
@@ -69,7 +69,7 @@ class App extends Component {
   handleRegisterSubmit = async data => {
     try {
       console.log(data);
-      const register = await fetch(process.env.REACT_APP_BACKEND_URL + 'user/register', {
+      const register = await fetch(process.env.REACT_APP_BACKEND_URL + '/user/register', {
         method: "POST",
         credentials: "include",
         body: JSON.stringify(data),
