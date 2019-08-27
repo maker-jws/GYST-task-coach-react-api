@@ -147,6 +147,7 @@ class App extends Component {
           <TaskContainer
             displayCreateModal={!this.state.showAddTask}
             currentTaskUser={this.state.currentUser}
+            handleAddTaskModal={this.headerAddTask}
           />
         ) : (
           <div>

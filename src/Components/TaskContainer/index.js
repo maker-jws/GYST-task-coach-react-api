@@ -60,6 +60,7 @@ class TaskContainer extends Component {
         "<<<successful created event"
       );
       this.getTasks();
+      this.props.handleAddTaskModal();
       return parsedResponse;
     } catch (err) {
       console.log(err);
