@@ -221,6 +221,7 @@ class TaskContainer extends Component {
             taskList={this.state.tasks}
             displayEditModal={this.displayEditModal}
             deleteTask={this.deleteTask}
+            {...this.state}
           />
           {this.state.showCreateModal === true ? (
             <CreateTask
