@@ -147,19 +147,20 @@ class App extends Component {
           <TaskContainer
             displayCreateModal={!this.state.showAddTask}
             currentTaskUser={this.state.currentUser}
+            handleAddTaskModal={this.headerAddTask}
           />
         ) : (
-          <div>
-            {this.state.notRegistered ? (
-              <Register registerSubmit={this.handleRegisterSubmit} />
-            ) : (
-              <Login
-                setNotRegistered={this.setNotRegistered}
-                handleLoginSubmit={this.handleLoginSubmit}
-              />
-            )}
-          </div>
-        )}
+            <div>
+              {this.state.notRegistered ? (
+                <Register registerSubmit={this.handleRegisterSubmit} />
+              ) : (
+                  <Login
+                    setNotRegistered={this.setNotRegistered}
+                    handleLoginSubmit={this.handleLoginSubmit}
+                  />
+                )}
+            </div>
+          )}
       </div>
     );
   }
