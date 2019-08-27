@@ -6,7 +6,6 @@ class CurrentClock extends Component {
             currentTime: new Date().toLocaleString()
         }
     }
-
     render() {
         return (<div>
             <h3>The day is {this.props.currentTime}.</h3>
