@@ -7,10 +7,11 @@ class CurrentClock extends Component {
         }
     }
     render() {
+        const currentParsedDate = this.props.currentTime;
+        const currentTime = currentParsedDate.toLocaleString();
         return (<div>
-            <h3>The day is {this.props.currentTime}.</h3>
+            <h3>The day is {currentTime}.</h3>
         </div>);
     }
 }
-
 export default CurrentClock;

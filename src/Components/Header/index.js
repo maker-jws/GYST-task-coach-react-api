@@ -19,6 +19,7 @@ class Header extends Component {
   }
   handleClockChange() {
     const timeNow = new Date().toLocaleString();
+
     this.setState({
       currentTime: timeNow
     });
