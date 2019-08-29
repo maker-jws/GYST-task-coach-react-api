@@ -66,7 +66,8 @@ class App extends Component {
       console.log(err);
     }
   };
-  handleRegisterSubmit = async data => {
+  handleRegisterSubmit = async (data) => {
+    console.log(data);
     try {
       console.log(data);
       const register = await fetch(process.env.REACT_APP_BACKEND_URL + '/user/register', {
