@@ -69,18 +69,17 @@ class App extends Component {
   handleRegisterSubmit = async data => {
     try {
       console.log(data);
-      const register = await fetch(process.env.REACT_APP_BACKEND_URL + 'user/register', {
+      const register = await fetch(process.env.REACT_APP_BACKEND_URL + '/user/register', {
         method: "POST",
         credentials: "include",
         body: JSON.stringify(data),
         headers: {
-          "Content-Type": "application/json",
-          'Accept': 'application/json'
+          "Content-Type": "application/json"
         }
       });
 
       const parsedRegister = await register.json();
-      console.log(parsedRegister, " response from register");
+      console.log(parsedRegister, " response from register on backend");
       if (parsedRegister.status.message === "Success") {
         console.log("logged in");
         console.log(parsedRegister); // this is what comes back from the server
