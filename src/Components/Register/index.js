@@ -65,12 +65,6 @@ class Register extends Component {
             <button type="Submit" className="Register-btn">
               Register
             </button>
-            <label>
-              Not registered?{" "}
-              <a href="#" onClick={this.handleRegisterLink}>
-                Click Here
-              </a>
-            </label>
           </Form>
         </div>
       </div>
