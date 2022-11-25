@@ -30,6 +30,7 @@ class Register extends Component {
                 src={logo}
                 width={96}
                 height={96}
+                alt="register logo"
               />
               <h5>
                 <label>Ready to...</label>

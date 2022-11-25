@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import { setPriority } from "os";
-// import { List, Segment, Button } from 'semantic-ui-react'
 
 class TaskList extends Component {
   constructor(props) {
@@ -61,7 +59,7 @@ class TaskList extends Component {
             </div>
           </div>
         );
-      }
+      } else return null;
     });
     const displayMediumPriorityTasks = this.props.taskList.map(task => {
       taskCount++;
@@ -91,7 +89,7 @@ class TaskList extends Component {
             </div>
           </div>
         );
-      }
+      } else return null;
     });
     const displayHighPriorityTasks = this.props.taskList.map(task => {
       taskCount++;
@@ -121,7 +119,7 @@ class TaskList extends Component {
             </div>
           </div>
         );
-      }
+      } else return null;
     });
 
     return (

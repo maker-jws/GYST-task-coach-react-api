@@ -38,9 +38,9 @@ class Header extends Component {
       <div className="ui inverted segment">
         <div className="ui inverted secondary menu">
           <div className="ui inverted secondary menu">
-            <a className="active item" href="#">
+            <div className="active item" role={"navigation"}>
               Home
-          </a>
+          </div>
             {this.props.currentUser.username ? (
               <a className="item" href="/user/logout">
                 Logout

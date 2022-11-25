@@ -41,7 +41,7 @@ class Login extends Component {
               onChange={this.handleChange}
             />
             <button className="Login-btn" type="submit">Login</button>
-            <label>Not registered? <a href="#" onClick={this.handleRegisterLink}>Click Here</a></label>
+            <label>Not registered? <div role={"navigation"} onClick={this.handleRegisterLink}>Click Here</div></label>
           </form>
         </div>
       </div>
