@@ -39,7 +39,7 @@ class App extends Component {
   handleLoginSubmit = async data => {
     try {
       console.log(JSON.stringify(data));
-      const login = await fetch("http://localhost:8000/user/login", {
+      const login = await fetch(process.env.REACT_APP_BACKEND_URL + "/user/login", {
         method: "POST",
         credentials: "include",
         body: JSON.stringify(data),
@@ -66,10 +66,11 @@ class App extends Component {
       console.log(err);
     }
   };
-  handleRegisterSubmit = async data => {
+  handleRegisterSubmit = async (data) => {
+    console.log(data);
     try {
       console.log(data);
-      const register = await fetch("http://localhost:8000/user/register", {
+      const register = await fetch(process.env.REACT_APP_BACKEND_URL + '/user/register', {
         method: "POST",
         credentials: "include",
         body: JSON.stringify(data),
@@ -79,7 +80,7 @@ class App extends Component {
       });
 
       const parsedRegister = await register.json();
-      console.log(parsedRegister, " response from register");
+      console.log(parsedRegister, " response from register on backend");
       if (parsedRegister.status.message === "Success") {
         console.log("logged in");
         console.log(parsedRegister); // this is what comes back from the server

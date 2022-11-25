@@ -44,7 +44,7 @@ class TaskContainer extends Component {
   addTask = async data => {
     console.log(data, "<-- initial addTask data response");
     try {
-      const createTaskResponse = await fetch("http://localhost:8000/task/v1/", {
+      const createTaskResponse = await fetch(process.env.REACT_APP_BACKEND_URL + "/task/v1/", {
         method: "POST",
         credentials: "include",
         body: data,
@@ -90,7 +90,7 @@ class TaskContainer extends Component {
   };
   getTasks = async () => {
     try {
-      const responseGetTasks = await fetch("http://localhost:8000/task/v1/", {
+      const responseGetTasks = await fetch(process.env.REACT_APP_BACKEND_URL + "/task/v1/", {
         method: "GET",
         credentials: "include",
         headers: {
@@ -132,7 +132,7 @@ class TaskContainer extends Component {
       console.log(this.state.taskToEdit);
 
       const getOneTask = await fetch(
-        "http://localhost:8000/task/v1/" + this.state.taskToEdit.id,
+        process.env.REACT_APP_BACKEND_URL + "/task/v1/" + this.state.taskToEdit.id,
         {
           //insert id here
           method: "PUT",
@@ -175,11 +175,11 @@ class TaskContainer extends Component {
     console.log(id, " delete task ID");
 
     try {
-      const deleteTask = await fetch("http://localhost:8000/task/v1/" + id, {
+      const deleteTask = await fetch(process.env.REACT_APP_BACKEND_URL + "/task/v1/" + id, {
         method: "DELETE",
         credentials: "include",
         headers: {
-          "Content-Type": "application/json" //may not need
+          "Content-Type": "application/json"
         }
       });
 
