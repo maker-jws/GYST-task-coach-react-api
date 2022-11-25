@@ -16,7 +16,8 @@
 - After logging out the uncompleted tasks (that are not saved) are deleted from DB
 - Session logout time is updated for user 
 
-
+## Future features
+- Some session work would be worth investigating after a rebuild
 
 
 

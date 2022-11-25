@@ -105,37 +105,7 @@ class App extends Component {
       notRegistered: true
     });
   };
-  // handleLogoutClick = async (data) => {
-  //   //posting to db : username and logout time
-  //   //store something in data variables
-  //   try {
-  //     console.log(JSON.stringify(data));
-  //     const logout = await fetch("http://localhost:8000/user/logout", {
-  //       method: "POST",
-  //       credentials: "include",
-  //       body: JSON.stringify(data),
-  //       headers: {
-  //         "Content-Type": "application/json"
-  //       }
-  //     });
-
-  //     const parsedLogout = await logout.json();
-  //     console.log(parsedLogout, " < logout response");
-  //     if (parsedLogout.status.message === "Success") {
-  //       console.log("logged out");
-  //       //after logout successful from server, will reset state
-  //       this.setState({
-  //         currentUser: {
-  //           username: "data.username",
-  //           login: "",
-  //           is_active: false
-  //         }
-  //       });
-  //     }
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
+  
   render() {
     return (
       <div className="App">
