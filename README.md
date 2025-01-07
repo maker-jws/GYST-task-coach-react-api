@@ -1,4 +1,3 @@
-# GYST-task-coach-react-api
 # GYST - React/Flask App 
 
 # User Stories: 
